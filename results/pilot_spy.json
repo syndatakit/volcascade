@@ -1,0 +1,149 @@
+{
+  "data": {
+    "tickers": [
+      "SPY",
+      "XLB",
+      "XLC",
+      "XLE",
+      "XLF",
+      "XLI",
+      "XLK",
+      "XLP",
+      "XLRE",
+      "XLU",
+      "XLV",
+      "XLY"
+    ],
+    "n_days": 2515,
+    "date_range": [
+      "2015-01-02",
+      "2024-12-30"
+    ]
+  },
+  "cascade": {
+    "orders": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "inner_window": 20,
+    "zscore_lookback": 120
+  },
+  "slope_spy": {
+    "mean": 0.013552344321818843,
+    "std": 0.4237602442357288,
+    "min": -1.7496491442950783,
+    "max": 1.9258292640771209
+  },
+  "H1_spike_drawdown": {
+    "status": "ok",
+    "n_spikes": 203,
+    "n_flat": 68,
+    "n_steep": 68,
+    "flat_median_fwd_return": -1.0543249902612857,
+    "steep_median_fwd_return": -1.0492681184816626,
+    "steep_to_flat_ratio": 0.9952036878321836,
+    "mannwhitney_U": 2238.0,
+    "mannwhitney_p": 0.7490471946994552,
+    "passes_2x_criterion": false,
+    "all_tertile_stats": {
+      "count": {
+        "flat": 68,
+        "moderate": 67,
+        "steep": 68
+      },
+      "median": {
+        "flat": -1.0543249902612857,
+        "moderate": -0.9802272213288135,
+        "steep": -1.0492681184816626
+      },
+      "mean": {
+        "flat": -1.0476369579003182,
+        "moderate": -0.9491507502650036,
+        "steep": -1.0072413603721335
+      },
+      "std": {
+        "flat": 0.8554454289451107,
+        "moderate": 0.6489890342756934,
+        "steep": 0.6454042955753224
+      }
+    }
+  },
+  "H3_aapl_xlk": {
+    "decoupling_order": 1,
+    "co_moves": false,
+    "f_statistics_per_order": {
+      "1": {
+        "max_F": 270.947647310928,
+        "min_p": 0.0,
+        "decoupling_detected": true
+      },
+      "2": {
+        "max_F": 278.8314659578325,
+        "min_p": 0.0,
+        "decoupling_detected": true
+      },
+      "3": {
+        "max_F": 198.62753103744544,
+        "min_p": 0.0,
+        "decoupling_detected": true
+      },
+      "4": {
+        "max_F": 228.74468113666603,
+        "min_p": 0.0,
+        "decoupling_detected": true
+      }
+    }
+  },
+  "ground_truth_global_crises": [
+    {
+      "date": "2008-09-15",
+      "label": "Lehman Brothers bankruptcy",
+      "class": "systemic",
+      "asset_class": "credit"
+    },
+    {
+      "date": "2008-10-09",
+      "label": "2008 GFC peak (uncontrolled decline)",
+      "class": "systemic",
+      "asset_class": "equity"
+    },
+    {
+      "date": "2011-08-08",
+      "label": "US debt-ceiling crisis / S&P downgrade",
+      "class": "systemic",
+      "asset_class": "equity"
+    },
+    {
+      "date": "2015-08-24",
+      "label": "2015 China devaluation / Black Monday",
+      "class": "systemic",
+      "asset_class": "equity"
+    },
+    {
+      "date": "2018-12-24",
+      "label": "2018 Christmas Eve equity rout",
+      "class": "systemic",
+      "asset_class": "equity"
+    },
+    {
+      "date": "2020-03-16",
+      "label": "COVID crash (peak drawdown)",
+      "class": "systemic",
+      "asset_class": "equity"
+    },
+    {
+      "date": "2020-03-23",
+      "label": "Fed announces unlimited QE",
+      "class": "systemic",
+      "asset_class": "rates"
+    },
+    {
+      "date": "2022-02-24",
+      "label": "Russia invades Ukraine",
+      "class": "systemic",
+      "asset_class": "commodities"
+    }
+  ]
+}

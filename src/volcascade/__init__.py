@@ -11,7 +11,7 @@ developed and frontier markets (H4).
 See docs/METHODOLOGY.md for the full mathematical treatment.
 """
 
-from volcascade.cascade import build, slope, entropy
+from volcascade.cascade import build, entropy, slope, zscore
 from volcascade.decoupling import chow_decoupling, correlation_decoupling
 from volcascade.baselines import hmm_regime, wasserstein_regime, cusum_regime
 
@@ -19,6 +19,7 @@ __version__ = "0.1.0.dev0"
 
 __all__ = [
     "build",
+    "zscore",
     "slope",
     "entropy",
     "chow_decoupling",
