@@ -1,0 +1,52 @@
+{
+  "per_asset": [
+    {
+      "asset": "EEM",
+      "asset_class": "Emerging markets equity",
+      "r": -0.14366809545048434,
+      "p": 1.0655497008147625e-21,
+      "n": 4394
+    },
+    {
+      "asset": "EFA",
+      "asset_class": "EAFE developed international equity",
+      "r": -0.08752640950932412,
+      "p": 6.195629586086765e-09,
+      "n": 4394
+    },
+    {
+      "asset": "GLD",
+      "asset_class": "Gold (commodity)",
+      "r": -0.1279064034094672,
+      "p": 1.7224521339201355e-17,
+      "n": 4394
+    },
+    {
+      "asset": "SPY",
+      "asset_class": "S&P 500 (control)",
+      "r": -0.15182094980068225,
+      "p": 4.520661444641279e-24,
+      "n": 4394
+    },
+    {
+      "asset": "TLT",
+      "asset_class": "20+ year Treasury bonds (long bond)",
+      "r": -0.07975502721965458,
+      "p": 1.198847245320948e-07,
+      "n": 4394
+    },
+    {
+      "asset": "USO",
+      "asset_class": "US Oil Fund (commodity/energy)",
+      "r": -0.16908570015049376,
+      "p": 1.5319714373942137e-29,
+      "n": 4394
+    }
+  ],
+  "summary": {
+    "n_assets": 6,
+    "n_negative": 6,
+    "n_significant": 6,
+    "median_spearman": -0.13578724942997578
+  }
+}
