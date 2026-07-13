@@ -1,0 +1,21 @@
+{
+  "n_universes": 1000,
+  "n_days": 5000,
+  "params": {
+    "inner_window": 10,
+    "zscore_lookback": 120,
+    "forward_days": 5
+  },
+  "pearson": {
+    "mean": 0.00031891632184722973,
+    "std": 0.02801129746105795,
+    "frac_abs_gt_005": 0.069,
+    "frac_p_lt_005": 0.323
+  },
+  "spearman": {
+    "mean": 9.08857367131552e-05,
+    "std": 0.02749586479736957,
+    "frac_abs_gt_005": 0.063,
+    "frac_p_lt_005": 0.309
+  }
+}

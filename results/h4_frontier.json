@@ -1,0 +1,66 @@
+{
+  "per_asset": [
+    {
+      "asset": "EWZ",
+      "n_days": 3246,
+      "forward_vol_pearson_r": -0.06393494275055259,
+      "forward_vol_pearson_p": 0.0003585532812328332,
+      "forward_vol_spearman_r": -0.0879583048733979,
+      "forward_vol_spearman_p": 8.908371171243197e-07,
+      "forward_vol_n": 3112,
+      "forward_return_pearson_r": NaN,
+      "forward_return_pearson_p": NaN,
+      "forward_return_spearman_r": 0.007598860956783645,
+      "forward_return_spearman_p": 0.6717550210491725,
+      "forward_return_n": 3112
+    },
+    {
+      "asset": "EZA",
+      "n_days": 3246,
+      "forward_vol_pearson_r": -0.06951529285549535,
+      "forward_vol_pearson_p": 0.00010399825743075674,
+      "forward_vol_spearman_r": -0.0803231431216119,
+      "forward_vol_spearman_p": 7.247042953980819e-06,
+      "forward_vol_n": 3112,
+      "forward_return_pearson_r": NaN,
+      "forward_return_pearson_p": NaN,
+      "forward_return_spearman_r": 0.008952341690628711,
+      "forward_return_spearman_p": 0.6176254919110934,
+      "forward_return_n": 3112
+    },
+    {
+      "asset": "INDA",
+      "n_days": 3246,
+      "forward_vol_pearson_r": -0.13864309479225817,
+      "forward_vol_pearson_p": 7.930540334163489e-15,
+      "forward_vol_spearman_r": -0.08727725069287218,
+      "forward_vol_spearman_p": 1.081826225141497e-06,
+      "forward_vol_n": 3112,
+      "forward_return_pearson_r": NaN,
+      "forward_return_pearson_p": NaN,
+      "forward_return_spearman_r": 0.0003134389816729741,
+      "forward_return_spearman_p": 0.9860618006619385,
+      "forward_return_n": 3109
+    },
+    {
+      "asset": "SPY",
+      "n_days": 3246,
+      "forward_vol_pearson_r": -0.13406454313950006,
+      "forward_vol_pearson_p": 5.924046946191409e-14,
+      "forward_vol_spearman_r": -0.07713236633203399,
+      "forward_vol_spearman_p": 1.6507882827843303e-05,
+      "forward_vol_n": 3112,
+      "forward_return_pearson_r": NaN,
+      "forward_return_pearson_p": NaN,
+      "forward_return_spearman_r": -0.06155494359177747,
+      "forward_return_spearman_p": 0.0005909381633568305,
+      "forward_return_n": 3112
+    }
+  ],
+  "meta": {
+    "developed_spearman": -0.07713236633203399,
+    "frontier_mean_spearman": -0.08518623289596065,
+    "n_frontier_assets": 3,
+    "n_developed_assets": 1
+  }
+}

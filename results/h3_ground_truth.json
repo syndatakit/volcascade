@@ -1,0 +1,1019 @@
+{
+  "events": [
+    {
+      "date": "2015-10-27",
+      "label": "Q4 FY15 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 65.46139584729416,
+      "min_p": 7.091449649720971e-11,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-01-26",
+      "label": "Q1 FY16 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 102.94872908003713,
+      "min_p": 4.424238753131249e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-04-26",
+      "label": "Q2 FY16 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 20.37260556367626,
+      "min_p": 4.755455024874067e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-07-26",
+      "label": "Q3 FY16 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 17.28916731608092,
+      "min_p": 1.676981357912055e-05,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-10-25",
+      "label": "Q4 FY16 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 10.376283407240553,
+      "min_p": 0.0004866117030378758,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-02-01",
+      "label": "Q1 FY17 earnings (first after iPhone 7 cycle)",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 45.87883222208254,
+      "min_p": 2.9634263931654914e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-05-02",
+      "label": "Q2 FY17 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 92.19827223778839,
+      "min_p": 1.5673018438633335e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-08-01",
+      "label": "Q3 FY17 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 109.79186317980538,
+      "min_p": 2.099431739566171e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-11-02",
+      "label": "Q4 FY17 earnings (iPhone X)",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 43.57499569600765,
+      "min_p": 4.97902941098971e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-02-01",
+      "label": "Q1 FY18 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 29.214152256875668,
+      "min_p": 2.2403127020176328e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-05-01",
+      "label": "Q2 FY18 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 57.82439562972277,
+      "min_p": 2.6846402878533127e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-07-31",
+      "label": "Q3 FY18 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 50.52343900150242,
+      "min_p": 1.1043876924077267e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-11-01",
+      "label": "Q4 FY18 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 55.92347978939978,
+      "min_p": 3.8237546462482896e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-01-29",
+      "label": "Q1 FY19 earnings (China weakness)",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 49.33728763491408,
+      "min_p": 1.4110449475523978e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-04-30",
+      "label": "Q2 FY19 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 97.48609630531845,
+      "min_p": 8.284484209752918e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-07-30",
+      "label": "Q3 FY19 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 112.2209833733868,
+      "min_p": 1.6275869541004795e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-10-30",
+      "label": "Q4 FY19 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 13.01560260804088,
+      "min_p": 0.00012112199326663742,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-01-28",
+      "label": "Q1 FY20 earnings (record)",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 6.6122120657076655,
+      "min_p": 0.0047688979845783575,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-04-30",
+      "label": "Q2 FY20 earnings (COVID)",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 10.786237290453803,
+      "min_p": 0.00038817616765463026,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-07-30",
+      "label": "Q3 FY20 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 81.3147072827172,
+      "min_p": 6.482370196181364e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-10-29",
+      "label": "Q4 FY20 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 48.19506006295816,
+      "min_p": 1.794530413157247e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-01-27",
+      "label": "Q1 FY21 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 22.9773726745895,
+      "min_p": 1.7901144433452032e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-04-28",
+      "label": "Q2 FY21 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 28.364753378545537,
+      "min_p": 2.9178829641374193e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-07-27",
+      "label": "Q3 FY21 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 78.61751878835376,
+      "min_p": 9.452438831658583e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-10-28",
+      "label": "Q4 FY21 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 42.78124627989503,
+      "min_p": 5.9829697862667786e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-01-27",
+      "label": "Q1 FY22 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 30.01118743706232,
+      "min_p": 1.7567297527776304e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-04-28",
+      "label": "Q2 FY22 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 81.49048595979654,
+      "min_p": 6.32727203964123e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-07-28",
+      "label": "Q3 FY22 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 95.09437406417284,
+      "min_p": 1.1011191958232303e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-10-27",
+      "label": "Q4 FY22 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 94.77199065160245,
+      "min_p": 1.1446399383885364e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-02-02",
+      "label": "Q1 FY23 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 21.001066443006568,
+      "min_p": 3.731303489962201e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-05-04",
+      "label": "Q2 FY23 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 54.32695037783148,
+      "min_p": 5.185699647469733e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-08-03",
+      "label": "Q3 FY23 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 21.950568017892074,
+      "min_p": 2.60830564913217e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-11-02",
+      "label": "Q4 FY23 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 69.78251607653951,
+      "min_p": 3.532329984068383e-11,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-02-01",
+      "label": "Q1 FY24 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 23.524450458318366,
+      "min_p": 1.4712131761740466e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-05-02",
+      "label": "Q2 FY24 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 38.97425356844214,
+      "min_p": 1.499740731603083e-08,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-08-01",
+      "label": "Q3 FY24 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 12.621353734654,
+      "min_p": 0.00014771909481925416,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-10-31",
+      "label": "Q4 FY24 earnings",
+      "class": "idiosyncratic",
+      "asset": "AAPL",
+      "max_F": 54.609756350488404,
+      "min_p": 4.910681861147737e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2015-09-17",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 26.648453819912085,
+      "min_p": 5.062001341427091e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2015-10-28",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 65.46139584729416,
+      "min_p": 7.091449649720971e-11,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2015-12-16",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 45.351696381794504,
+      "min_p": 3.3309510705237244e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-01-27",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 102.94872908003713,
+      "min_p": 4.424238753131249e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-03-16",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 31.546824265113603,
+      "min_p": 1.1133862332091127e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-04-27",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 20.37260556367626,
+      "min_p": 4.755455024874067e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-06-15",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 18.47513147262903,
+      "min_p": 1.0178537780736185e-05,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-07-27",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 17.28916731608092,
+      "min_p": 1.676981357912055e-05,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-09-21",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 30.395831275644603,
+      "min_p": 1.5647300544152642e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-11-02",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 8.095820469517275,
+      "min_p": 0.001848034646150798,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2016-12-14",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 24.346253048128013,
+      "min_p": 1.1016715086853424e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-02-01",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 45.87883222208254,
+      "min_p": 2.9634263931654914e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-03-15",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 81.0670867451491,
+      "min_p": 6.707745470180271e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-05-03",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 92.19827223778839,
+      "min_p": 1.5673018438633335e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-06-14",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 93.17029641944602,
+      "min_p": 1.390665360645471e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-07-26",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 109.79186317980538,
+      "min_p": 2.099431739566171e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-09-20",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 130.6337510622708,
+      "min_p": 2.731148640577885e-14,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-11-01",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 43.57499569600765,
+      "min_p": 4.97902941098971e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2017-12-13",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 119.24468381864533,
+      "min_p": 8.004708007547379e-14,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-01-31",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 29.214152256875668,
+      "min_p": 2.2403127020176328e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-03-21",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 21.47196229719217,
+      "min_p": 3.120365739905928e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-05-02",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 57.82439562972277,
+      "min_p": 2.6846402878533127e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-06-13",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 78.21583316189864,
+      "min_p": 1.0008105455483474e-11,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-08-01",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 50.52343900150242,
+      "min_p": 1.1043876924077267e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-09-26",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 31.544755868080482,
+      "min_p": 1.11405850877766e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-11-08",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 55.92347978939978,
+      "min_p": 3.8237546462482896e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2018-12-19",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 31.547483551894484,
+      "min_p": 1.1131720412116408e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-01-30",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 49.33728763491408,
+      "min_p": 1.4110449475523978e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-03-20",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 97.48609630531845,
+      "min_p": 8.284484209752918e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-05-01",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 97.48609630531845,
+      "min_p": 8.284484209752918e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-06-19",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 112.2209833733868,
+      "min_p": 1.6275869541004795e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-07-31",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 112.2209833733868,
+      "min_p": 1.6275869541004795e-13,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-09-18",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 46.5802937155587,
+      "min_p": 2.5405588743865337e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-10-30",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 13.01560260804088,
+      "min_p": 0.00012112199326663742,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2019-12-11",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 16.75496417497343,
+      "min_p": 2.1134450850057718e-05,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-01-29",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 6.6122120657076655,
+      "min_p": 0.0047688979845783575,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-03-03",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 8.506809189703928,
+      "min_p": 0.001438056050458436,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-04-29",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 9.72751827806163,
+      "min_p": 0.0007015964385355122,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-06-10",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 28.859872608453674,
+      "min_p": 2.4997170344764896e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-07-29",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 81.3147072827172,
+      "min_p": 6.482370196181364e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-09-16",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 86.40539850605832,
+      "min_p": 3.2729374765949615e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-11-05",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 22.494071528671164,
+      "min_p": 2.1342137705993025e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2020-12-16",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 19.21819728145086,
+      "min_p": 7.515320485707022e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-01-27",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 22.9773726745895,
+      "min_p": 1.7901144433452032e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-03-17",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 27.58351313384908,
+      "min_p": 3.738679783538146e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-04-28",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 28.364753378545537,
+      "min_p": 2.9178829641374193e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-06-16",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 15.652450266744582,
+      "min_p": 3.452713986507039e-05,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-07-28",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 78.61751878835376,
+      "min_p": 9.452438831658583e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-09-22",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 35.397797276423894,
+      "min_p": 3.7890543147511835e-08,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-11-03",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 42.78124627989503,
+      "min_p": 5.9829697862667786e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2021-12-15",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 64.03979697147706,
+      "min_p": 8.994294198316766e-11,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-01-26",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 28.40338317545673,
+      "min_p": 2.8826890052791043e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-03-16",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 29.577502150862845,
+      "min_p": 2.00410857242872e-07,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-05-04",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 81.49048595979654,
+      "min_p": 6.32727203964123e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-06-15",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 93.60645800445432,
+      "min_p": 1.318500864044836e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-07-27",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 95.09437406417284,
+      "min_p": 1.1011191958232303e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-09-21",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 46.46933269226281,
+      "min_p": 2.602877469115583e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-11-02",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 94.77199065160245,
+      "min_p": 1.1446399383885364e-12,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2022-12-14",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 42.93382075722041,
+      "min_p": 5.7742456371912e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-02-01",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 19.29653023098818,
+      "min_p": 7.281775999734563e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-03-22",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 62.85252929351324,
+      "min_p": 1.1006584532680108e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-05-03",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 54.32695037783148,
+      "min_p": 5.185699647469733e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-06-14",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 54.32695037783148,
+      "min_p": 5.185699647469733e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-07-26",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 34.34877994175475,
+      "min_p": 5.0378968774467126e-08,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-09-20",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 15.06868323240838,
+      "min_p": 4.5120828817912795e-05,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-11-01",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 69.78251607653951,
+      "min_p": 3.532329984068383e-11,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2023-12-13",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 15.47204301018668,
+      "min_p": 3.748188090346716e-05,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-01-31",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 23.524450458318366,
+      "min_p": 1.4712131761740466e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-03-20",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 50.43461004223386,
+      "min_p": 1.124662030171919e-09,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-05-01",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 38.97425356844214,
+      "min_p": 1.499740731603083e-08,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-06-12",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 22.338478475340658,
+      "min_p": 2.2596520653506147e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-07-31",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 12.621353734654,
+      "min_p": 0.00014771909481925416,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-09-18",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 22.08072162780499,
+      "min_p": 2.4852657817264756e-06,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-11-07",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 54.609756350488404,
+      "min_p": 4.910681861147737e-10,
+      "decoupling_detected": true
+    },
+    {
+      "date": "2024-12-18",
+      "label": "FOMC decision",
+      "class": "systemic",
+      "asset": "FOMC",
+      "max_F": 64.94508295761315,
+      "min_p": 7.726985717937396e-11,
+      "decoupling_detected": true
+    }
+  ],
+  "summary": {
+    "n_total": 112,
+    "n_idiosyncratic": 37,
+    "n_systemic": 75,
+    "idio_decoupling_rate": 1.0,
+    "sys_decoupling_rate": 1.0
+  }
+}
