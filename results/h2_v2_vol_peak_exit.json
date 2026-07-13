@@ -1,0 +1,70 @@
+{
+  "per_asset": [
+    {
+      "asset": "SPY",
+      "n_regimes": 268,
+      "n_cascade_v2_signals": 253,
+      "n_cascade_avg_signals": 237,
+      "n_naive_signals": 259,
+      "cascade_v2_mean_lead": 0.2648221343873518,
+      "cascade_avg_mean_lead": 5.69620253164557,
+      "naive_mean_lead": 4.776061776061776
+    },
+    {
+      "asset": "XLE",
+      "n_regimes": 252,
+      "n_cascade_v2_signals": 246,
+      "n_cascade_avg_signals": 219,
+      "n_naive_signals": 241,
+      "cascade_v2_mean_lead": 1.2073170731707317,
+      "cascade_avg_mean_lead": 5.666666666666667,
+      "naive_mean_lead": 6.946058091286307
+    },
+    {
+      "asset": "XLF",
+      "n_regimes": 286,
+      "n_cascade_v2_signals": 281,
+      "n_cascade_avg_signals": 246,
+      "n_naive_signals": 280,
+      "cascade_v2_mean_lead": 1.2419928825622777,
+      "cascade_avg_mean_lead": 7.467479674796748,
+      "naive_mean_lead": 4.985714285714286
+    },
+    {
+      "asset": "XLK",
+      "n_regimes": 250,
+      "n_cascade_v2_signals": 242,
+      "n_cascade_avg_signals": 222,
+      "n_naive_signals": 244,
+      "cascade_v2_mean_lead": -0.48760330578512395,
+      "cascade_avg_mean_lead": 4.418918918918919,
+      "naive_mean_lead": 2.6721311475409837
+    },
+    {
+      "asset": "XLV",
+      "n_regimes": 266,
+      "n_cascade_v2_signals": 253,
+      "n_cascade_avg_signals": 220,
+      "n_naive_signals": 257,
+      "cascade_v2_mean_lead": 0.466403162055336,
+      "cascade_avg_mean_lead": 6.1,
+      "naive_mean_lead": 6.054474708171206
+    },
+    {
+      "asset": "XLY",
+      "n_regimes": 273,
+      "n_cascade_v2_signals": 266,
+      "n_cascade_avg_signals": 242,
+      "n_naive_signals": 264,
+      "cascade_v2_mean_lead": 1.7293233082706767,
+      "cascade_avg_mean_lead": 6.681818181818182,
+      "naive_mean_lead": 5.178030303030303
+    }
+  ],
+  "summary": {
+    "n_assets": 6,
+    "cascade_v2_mean_lead": 0.7370425424435417,
+    "cascade_avg_mean_lead": 6.005180995641013,
+    "naive_mean_lead": 5.1020783853008105
+  }
+}
