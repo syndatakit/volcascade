@@ -1,0 +1,41 @@
+{
+  "per_method": [
+    {
+      "method": "GARCH",
+      "spearman_r": 0.6241932656183237,
+      "spearman_p": 0.0,
+      "n": 6282
+    },
+    {
+      "method": "HAR_RV",
+      "spearman_r": 0.6080249289912238,
+      "spearman_p": 0.0,
+      "n": 6282
+    },
+    {
+      "method": "RV_1d",
+      "spearman_r": 0.33526205439885215,
+      "spearman_p": 7.556574349782306e-165,
+      "n": 6282
+    },
+    {
+      "method": "VVIX",
+      "spearman_r": 0.2308864687487786,
+      "spearman_p": 1.0567191722575934e-55,
+      "n": 4515
+    },
+    {
+      "method": "cascade_slope",
+      "spearman_r": -0.15010507399908538,
+      "spearman_p": 2.4494585712179054e-32,
+      "n": 6153
+    }
+  ],
+  "summary": {
+    "cascade_rho": -0.15010507399908538,
+    "best_other_method": "GARCH",
+    "best_other_rho": 0.6241932656183237,
+    "improvement": -0.4740881916192383,
+    "cascade_relative_improvement": 0.24047852206542442
+  }
+}
