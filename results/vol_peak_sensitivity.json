@@ -1,0 +1,46 @@
+{
+  "per_asset": {
+    "SPY": {
+      "n_combinations": 120,
+      "n_significant": 119,
+      "n_negative": 120,
+      "median_spearman": -0.09476403570653874
+    },
+    "XLK": {
+      "n_combinations": 120,
+      "n_significant": 118,
+      "n_negative": 120,
+      "median_spearman": -0.0914958431092443
+    },
+    "XLE": {
+      "n_combinations": 120,
+      "n_significant": 119,
+      "n_negative": 120,
+      "median_spearman": -0.08948531401767815
+    },
+    "XLF": {
+      "n_combinations": 120,
+      "n_significant": 118,
+      "n_negative": 120,
+      "median_spearman": -0.09719481232016214
+    },
+    "XLV": {
+      "n_combinations": 120,
+      "n_significant": 113,
+      "n_negative": 119,
+      "median_spearman": -0.07005021175180483
+    },
+    "XLY": {
+      "n_combinations": 120,
+      "n_significant": 120,
+      "n_negative": 120,
+      "median_spearman": -0.10767808156772746
+    }
+  },
+  "aggregate": {
+    "n_total": 720,
+    "n_significant": 707,
+    "n_negative": 719,
+    "median_spearman": -0.09287350208883248
+  }
+}
