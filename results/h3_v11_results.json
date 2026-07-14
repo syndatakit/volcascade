@@ -1,0 +1,167 @@
+{
+  "description": "H3 v11 FINAL: panel with stock fixed effects + days_since_last_earnings calendar feature",
+  "n_events": 1120,
+  "n_idiosyncratic": 364,
+  "n_systemic": 756,
+  "n_features": 176,
+  "train_size": 784,
+  "test_size": 336,
+  "train_period": "2019-10-30 to 2023-06-14",
+  "test_period": "2023-06-14 to 2024-12-18",
+  "univariate_top10": [
+    [
+      "days_since_last_earnings",
+      0.9651723937438224
+    ],
+    [
+      "slope_cum5_3d",
+      0.5895764288621431
+    ],
+    [
+      "mkt_entropy_2d",
+      0.5888932496075353
+    ],
+    [
+      "z2_1d",
+      0.41145197395197397
+    ],
+    [
+      "slope_cum5_2d",
+      0.5868001046572475
+    ],
+    [
+      "z2_3d",
+      0.41397755683469967
+    ],
+    [
+      "z2_2d",
+      0.41560192453049594
+    ],
+    [
+      "z2_5d",
+      0.42314233385661965
+    ],
+    [
+      "z3_1d",
+      0.424083522297808
+    ],
+    [
+      "z2_10d",
+      0.4245123262980406
+    ]
+  ],
+  "models": {
+    "top10_logreg_l2_C0.01": {
+      "auc": 0.9611557829759584,
+      "n_features": 10
+    },
+    "top10_logreg_l1_C0.01": {
+      "auc": 0.9714100064977258,
+      "n_features": 10
+    },
+    "top10_logreg_l2_C0.1": {
+      "auc": 0.9633081546458739,
+      "n_features": 10
+    },
+    "top10_logreg_l1_C0.1": {
+      "auc": 0.9689124431448993,
+      "n_features": 10
+    },
+    "top10_logreg_l2_C1.0": {
+      "auc": 0.965135640025991,
+      "n_features": 10
+    },
+    "top10_logreg_l1_C1.0": {
+      "auc": 0.9659478557504874,
+      "n_features": 10
+    },
+    "top20_logreg_l2_C0.01": {
+      "auc": 0.9515310266406758,
+      "n_features": 20
+    },
+    "top20_logreg_l1_C0.01": {
+      "auc": 0.9714100064977258,
+      "n_features": 20
+    },
+    "top20_logreg_l2_C0.1": {
+      "auc": 0.968059616634178,
+      "n_features": 20
+    },
+    "top20_logreg_l1_C0.1": {
+      "auc": 0.9704150422352178,
+      "n_features": 20
+    },
+    "top20_logreg_l2_C1.0": {
+      "auc": 0.9673286224821313,
+      "n_features": 20
+    },
+    "top20_logreg_l1_C1.0": {
+      "auc": 0.9677753411306043,
+      "n_features": 20
+    },
+    "top10_stk_logreg_l2_C0.01": {
+      "auc": 0.9649325860948668,
+      "n_features": 27
+    },
+    "top10_stk_logreg_l1_C0.01": {
+      "auc": 0.9714100064977258,
+      "n_features": 27
+    },
+    "top10_stk_logreg_l2_C0.1": {
+      "auc": 0.9722425276153346,
+      "n_features": 27
+    },
+    "top10_stk_logreg_l1_C0.1": {
+      "auc": 0.9705774853801169,
+      "n_features": 27
+    },
+    "top10_stk_logreg_l2_C1.0": {
+      "auc": 0.9783747563352826,
+      "n_features": 27
+    },
+    "top10_stk_logreg_l1_C1.0": {
+      "auc": 0.9782123131903834,
+      "n_features": 27
+    },
+    "top20_stk_logreg_l2_C0.01": {
+      "auc": 0.9545768356075374,
+      "n_features": 37
+    },
+    "top20_stk_logreg_l1_C0.01": {
+      "auc": 0.9714100064977258,
+      "n_features": 37
+    },
+    "top20_stk_logreg_l2_C0.1": {
+      "auc": 0.973988791423002,
+      "n_features": 37
+    },
+    "top20_stk_logreg_l1_C0.1": {
+      "auc": 0.9707805393112411,
+      "n_features": 37
+    },
+    "top20_stk_logreg_l2_C1.0": {
+      "auc": 0.9764254385964912,
+      "n_features": 37
+    },
+    "top20_stk_logreg_l1_C1.0": {
+      "auc": 0.9771564327485379,
+      "n_features": 37
+    },
+    "slope_only": {
+      "auc": 0.5941967186484731,
+      "n_features": 1
+    },
+    "days_since_only": {
+      "auc": 0.9714100064977258,
+      "n_features": 1
+    },
+    "cascade_only_no_dsl": {
+      "auc": 0.6200251786874593,
+      "n_features": 10
+    }
+  },
+  "best_model": "top10_stk_logreg_l2_C1.0",
+  "best_auc": 0.9783747563352826,
+  "passes_preregistered_criterion": true,
+  "caveat": "Most of the signal comes from days_since_last_earnings (calendar); cascade trajectory features add ~0.1% on top."
+}
