@@ -27,14 +27,20 @@ The shape of the cascade (flat vs. steepening vs. inverted) at each time `t` is 
 ## Repo layout
 
 - `docs/DESIGN_MEMO.md` — locked methodology + package design (1 page)
-- `src/volcascade/` — package source (cascade, decoupling, baselines, regime, io, viz)
+- `docs/METHODOLOGY.md` — full mathematical treatment
+- `docs/IMPLEMENTATION_NOTES.md` — known gaps between methodology and current code
+- `data/ground_truth_events.csv` — H3 curated event table (AAPL earnings, FOMC)
+- `src/volcascade/` — package source (cascade, decoupling, baselines, io, viz)
 - `tests/` — pytest test suite
-- `experiments/` — pilot scripts and notebooks
-- `paper/` — manuscript source (LaTeX/Markdown)
+- `experiments/` — pilot scripts (.py), one per hypothesis-version
+- `results/` — JSON outputs and human-readable narratives from each experiment
+- `paper/` — *pending* (manuscript source not yet started; see DESIGN_MEMO deliverable sequence)
 
 ## Status
 
-Active development. See `docs/DESIGN_MEMO.md` for the locked design decisions and the deliverable sequence.
+Active development. See `docs/DESIGN_MEMO.md` for the locked design decisions and the deliverable sequence, and `docs/IMPLEMENTATION_NOTES.md` for known gaps between what the methodology describes and what the code currently does.
+
+The H1/H2 regime entry/exit logic lives in `experiments/` rather than in a `volcascade.regime` package module as the design memo suggests — this is a packaging gap, not a methodological one. The coupling/decoupling primitives live in `src/volcascade/decoupling.py`.
 
 ## Authors
 

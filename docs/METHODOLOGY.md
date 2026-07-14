@@ -92,6 +92,17 @@ with $K = 20$ (one trading month). A regime exit is flagged on day $t$ if $C_{i,
 
 ## 6. H3 — Cross-sectional decoupling (the most novel piece)
 
+> **Code status (2026-07-14):** the per-order decoupling test described in
+> this section (test z^(k) for k=1..4 separately) is **not yet implemented**
+> in `src/volcascade/decoupling.py`. The current `chow_decoupling()` function
+> operates on a single z-scored series across all k (a flat-cascade baseline)
+> - its docstring admits this. The H3 v3-v5 experiment scripts in
+> `experiments/` get the per-order F-statistics by calling `chow_statistic`
+> directly on the order-specific z^(k) series inside the experiment (not
+> through the package API). See `docs/IMPLEMENTATION_NOTES.md` section 1
+> for the gap, the workaround the experiments use, and the priority for
+> closing it before paper submission.
+
 For a stock $i$ and its sector (or country) benchmark $b$, construct parallel cascades $\mathbf{z}_{i,t}$ and $\mathbf{z}_{b,t}$. The **decoupling order** $k^*_{i,t}$ is the smallest $k$ at which the joint distribution of $(z^{(k)}_{i,t}, z^{(k)}_{b,t})$ rejects the null of equal conditional distributions via a Chow test (Chow 1960) on the bivariate regression
 
 $$
@@ -104,7 +115,7 @@ Low $k^*$ (decoupling at order 1 or 2) means the stock and sector diverge in raw
 
 **Hypothesis:** low-$k^*$ decoupling predicts *idiosyncratic* events (the stock is moving on its own information); high-$k^*$ / no-decoupling predicts *systemic* events (everything is moving together through all orders of the cascade).
 
-**Ground truth (H3):** idiosyncratic = earnings surprises (Zacks), M&A announcements (SDC), FDA binary events (BioPharmCatalyst), CEO exits; systemic = FOMC decisions, NFP releases, GFC peak days, COVID crash days. Curated table committed as `data/ground_truth_events.csv`.
+**Ground truth (H3):** idiosyncratic = AAPL earnings (40 events, 2015-2024); systemic = FOMC decisions (81 events, 2015-2024). The methodology's broader ambition (M&A from SDC, FDA binaries from BioPharmCatalyst, CEO exits, NFP, GFC peak days, COVID crash days) is documented in `docs/IMPLEMENTATION_NOTES.md` section 4 as not yet implemented. The currently-curated 121-event table is committed as `data/ground_truth_events.csv` and the same dates are also available programmatically via `experiments/h3_ground_truth.py` (`aapl_earnings_dates()`, `fomc_dates()`).
 
 **Pre-registered pass criterion:** decoupling order $k^*$ predicts event type (idiosyncratic vs systemic) with AUC > 0.7, using logistic regression with 5-fold time-series cross-validation.
 
@@ -124,14 +135,36 @@ Re-run H1 and H3 on the frontier sample (NSE Kenya, GSE Ghana, BVSP Brazil, JSE 
 
 All four hypotheses are evaluated against a canonical set of baselines drawn from the regime-detection and vol-of-vol literature:
 
-| Method | Reference | What it tests |
-|---|---|---|
-| HMM (Gaussian, 2-state) | Hamilton 1989 | Standard Markov regime detector; BIC selects state count |
-| MS-AR(1) | Hamilton 1989; Ang-Bekaert 2002a | Markov-switching AR with fixed K=2 |
-| Wasserstein $k$-means | Campani et al. 2021 | Non-parametric, distribution-based regime classifier |
-| Bai-Perron F-test | Bai & Perron 2003 | Multiple structural change points in the cascade slope series |
-| Inclán-Tiao CUSUM | Inclán & Tiao 1994 | CUSUM of squares for variance shifts |
-| RCM | Ang & Bekaert 2002b | Regime Classification Measure (how cleanly the model separates regimes) |
+| Method | Reference | What it tests | Code status |
+|---|---|---|---|
+| HMM (Gaussian, 2-state) | Hamilton 1989 | Standard Markov regime detector; BIC selects state count | shipped |
+| MS-AR(1) | Hamilton 1989; Ang-Bekaert 2002a | Markov-switching AR with fixed K=2 | *pending* - not in package; experiments use HMM only |
+| Wasserstein $k$-means | Campani et al. 2021 | Non-parametric, distribution-based regime classifier | **shipped as a simplification** - see note below |
+| Bai-Perron F-test | Bai & Perron 2003 | Multiple structural change points in the cascade slope series | **shipped as a simplification** - see note below |
+| Inclán-Tiao CUSUM | Inclán & Tiao 1994 | CUSUM of squares for variance shifts | shipped (finite-n correction not applied; see note) |
+| RCM | Ang & Bekaert 2002b | Regime Classification Measure (how cleanly the model separates regimes) | shipped (degenerate with hard labels; see note) |
+
+**Notes on the simplified baselines (added 2026-07-14):**
+
+- **Wasserstein k-means** - `volcascade.baselines.wasserstein_regime` is Euclidean
+  KMeans on 5-bin histograms of sliding windows, not Wasserstein-2 distance.
+  The Campani 2021 reference describes true optimal-transport clustering, which
+  requires the `POT` library. The current implementation captures the *idea*
+  (distribution-based regime classifier) but not the metric. See IMPLEMENTATION_NOTES.md section 2.1.
+- **Bai-Perron F-test** - `volcascade.baselines.bai_perron_breaks` runs PELT
+  (`ruptures.Pelt` with RBF kernel, BIC-style penalty), not Bai-Perron's
+  sequential F-test. It produces change-point locations but no F-statistics,
+  so a true F-test claim is not supportable. The PELT output is used as a
+  change-point detector in the experiments. See IMPLEMENTATION_NOTES.md section 2.2.
+- **Inclán-Tiao CUSUM** - the asymptotic critical values are used at all
+  sample sizes. The code includes a placeholder line
+  `critical = a + (a - 0.4) * 0.0  # asymptotic; could refine for finite n`
+  where `(a - 0.4) * 0.0` is always zero. A finite-n refinement (Kiefer,
+  butler, or simulation-based) should be added. See IMPLEMENTATION_NOTES.md section 2.3.
+- **RCM** - with hard state labels, the current implementation collapses RCM
+  to 0 (because p in {0, 1} makes p(1-p) = 0). The Ang-Bekaert formula
+  expects soft state probabilities p_t in [0, 1]. Either enforce soft
+  probabilities at the API level or document the degeneracy. See IMPLEMENTATION_NOTES.md section 2.4.
 
 The cascade slope $\beta_t$ is fed *into* Bai-Perron and Inclán-Tiao as a preprocessed series; the cascade itself is not a standalone classifier but a *feature* that the standard detectors consume. This isolates the cascade's marginal contribution.
 
@@ -187,8 +220,15 @@ A result that fails any criterion is reported as a *negative* or *partially-supp
 3. **Cascade slope regularization:** OLS is sensitive to collinearity (orders are highly correlated at long lookbacks). Ridge-regularized slope as robustness.
 4. **Multivariate cascade:** the current framework is univariate (one asset at a time). A multivariate cascade (joint $\sigma$ across assets) would be a natural extension, but is out of scope for the v1 paper.
 
+5. **Per-order decoupling test** - current code does not test z^(k) separately for k=1..4 (see section 6 note and IMPLEMENTATION_NOTES.md section 1). Top priority for the v1 paper.
+6. **Proper Wasserstein k-means** - Euclidean on histograms is a placeholder (see section 8 note and IMPLEMENTATION_NOTES.md section 2.1).
+7. **Proper Bai-Perron F-test** - PELT placeholder does not return F-stats (see section 8 note and IMPLEMENTATION_NOTES.md section 2.2).
+8. **Multiple-testing correction** - BH-FDR across the full test battery is not yet applied; raw p-values are reported in the JSON result files. See IMPLEMENTATION_NOTES.md section 5.
+
 These are flagged for sensitivity analysis in the appendix; they do not block the v1 design.
 
 ---
 
 *End of methodology v1. Next: package MVP (cascade.py + decoupling.py + baselines.py) implementing Sections 1-3, 6, 8. Pilot script runs H1 on S&P 500 with synthetic-adversarial pre-test.*
+
+*Doc-vs-code audit on 2026-07-14: added H3 code-status callout in section 6, expanded the section 8 baseline table with shipped-as-simplified notes, added items 5-8 to the open questions list. See `docs/IMPLEMENTATION_NOTES.md` for the full audit.*

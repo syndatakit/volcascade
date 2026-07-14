@@ -67,20 +67,46 @@ Strategic call: **H1-primary, H3-differentiator.** H1 is the most intuitive entr
 
 ---
 
+## Implementation notes (added 2026-07-14)
+
+These are the known deltas between what this memo describes and what the
+code currently does. They are documented properly in `docs/IMPLEMENTATION_NOTES.md`
+but flagged here because they affect the headline results:
+
+- **H3 decoupling (`volcascade.decoupling`)** — the per-order decoupling test
+  described in `docs/METHODOLOGY.md` Section 6 (test z^(k) for k=1..4 separately)
+  is not yet implemented. The current `chow_decoupling()` operates on a single
+  z-scored series across all k, i.e. the "flat cascade" baseline. The H3 v3–v5
+  experiment results (event-magnitude Spearman –0.11, 6/6 assets) were generated
+  by calling `chow_statistic` on the order-specific z^(k) series directly inside
+  the experiment scripts — not via the package API. See IMPLEMENTATION_NOTES.md §1.
+- **Baseline simplifications** — `volcascade.baselines.wasserstein_regime` uses
+  Euclidean KMeans on histogram features, not true Wasserstein-2 distance
+  (Campani 2021). `volcascade.baselines.bai_perron_breaks` runs PELT with RBF
+  kernel, not Bai-Perron's sequential F-test. Both are flagged in
+  IMPLEMENTATION_NOTES.md §2.
+- **Frontier data layer** — `volcascade.io.FRONTIER_SAMPLE` has 4 of 6 markets
+  mapping `country_etf == sector_proxy`, so H3 decoupling on frontier data is
+  effectively a self-comparison. See IMPLEMENTATION_NOTES.md §3.
+- **`data/ground_truth_events.csv`** is now the canonical H3 event table (121
+  events: 40 AAPL earnings, 81 FOMC decisions). The methodology docstring
+  also mentions NFP releases (1/month) which are not yet implemented; see
+  IMPLEMENTATION_NOTES.md §4.
+
 ## Package design
 
 **Name:** `volcascade` (locked to match repo)
 
 **Modules:**
 
-| Module | Responsibility |
-|---|---|
-| `volcascade.cascade` | Core cascade construction (orders 1–N, z-scoring, slope, entropy) |
-| `volcascade.decoupling` | H3 decoupling tests (Chow, cross-correlation) |
-| `volcascade.baselines` | Comparison battery (HMM, Wasserstein k-means, Inclán-Tiao CUSUM, Bai-Perron, RCM) |
-| `volcascade.regime` | H1/H2 regime entry and exit detection |
-| `volcascade.io` | yfinance data loaders + curated frontier sample |
-| `volcascade.viz` | Cascade plots, slope heatmaps, regime overlays |
+| Module | Responsibility | Status |
+|---|---|---|
+| `volcascade.cascade` | Core cascade construction (orders 1–N, z-scoring, slope, entropy) | shipped |
+| `volcascade.decoupling` | H3 decoupling tests (Chow, cross-correlation) | shipped (see note below) |
+| `volcascade.baselines` | Comparison battery (HMM, Wasserstein k-means, Inclán-Tiao CUSUM, Bai-Perron, RCM) | shipped (see IMPLEMENTATION_NOTES.md for two simplifications) |
+| `volcascade.regime` | H1/H2 regime entry and exit detection | *pending* — logic currently lives in `experiments/` |
+| `volcascade.io` | yfinance data loaders + curated frontier sample | shipped (see IMPLEMENTATION_NOTES.md for frontier data caveat) |
+| `volcascade.viz` | Cascade plots, slope heatmaps, regime overlays | shipped (untested — see IMPLEMENTATION_NOTES.md) |
 
 **API sketch:**
 

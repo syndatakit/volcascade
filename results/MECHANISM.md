@@ -63,14 +63,16 @@ When this premium reverts (because vol is reversion-prone), the vol-of-vol rever
 
 ### 2.4 Connection to GARCH
 
-The cascade's vol-peak effect is partly GARCH-driven (~22% persistence on GARCH-residuals) and partly beyond GARCH (~22% persists on GARCH-residuals). GARCH processes have built-in vol-of-vol structure: vol clustering means the variance process has non-zero autocorrelation, which manifests at higher orders of the cascade.
+**Caveat on the "78% GARCH-explained" framing (added 2026-07-14):** the numbers below are partial-correlation statistics, not a formal variance decomposition. The relevant result is from `results/h3b_garch_residual_test.json` and `results/garch_complementarity.json`: the raw Spearman correlation between cascade slope and forward 5-day realized vol is on the order of -0.15 (SPY 2000-2024). After controlling for GARCH(1,1) conditional variance (i.e. computing the partial Spearman), the median partial correlation shrinks to approximately -0.043 across the 12 sector ETFs. The "78% / 22%" split is the ratio of partial-to-raw, *not* a Shapley or variance-decomposition attribution. Reviewers should not interpret it as "78% of the cascade's effect is mechanically GARCH." A proper variance decomposition (Shapley, Sobol, or regression R²) is flagged in `docs/IMPLEMENTATION_NOTES.md` section 5.4 as a follow-up. The H3b "92% GARCH-independent" claim below should be read in the same way: it is the ratio of the event-day raw Spearman to the partial Spearman, not a formal attribution.
 
-But the cascade captures something beyond GARCH too: the **78% that disappears on GARCH-residuals** is the part of the cascade that GARCH already explains. The remaining 22% is genuinely beyond GARCH, which the cascade picks up from:
+The cascade's vol-peak effect is partly GARCH-driven and partly beyond GARCH. GARCH processes have built-in vol-of-vol structure: vol clustering means the variance process has non-zero autocorrelation, which manifests at higher orders of the cascade.
+
+The cascade captures something beyond GARCH too: the **22% that persists on GARCH-residuals** is the part of the cascade's effect that GARCH does not explain. The cascade picks up this residual from:
 - Variance risk premium dynamics (not in GARCH)
 - Higher-moment structure (GARCH is symmetric; the cascade captures asymmetry)
 - Volatility-of-volatility feedback loops (e.g., leverage effects, feedback trading)
 
-The H3b event-magnitude finding (Spearman -0.33, p<0.001) is **92% GARCH-independent**, suggesting that the cascade's event-day signal is capturing a different mechanism (event-specific vol-of-vol structure) than what GARCH captures.
+The H3b event-magnitude finding (Spearman -0.33, p<0.001) is **~92% GARCH-independent** under the same partial-correlation reading, suggesting that the cascade's event-day signal is capturing a different mechanism (event-specific vol-of-vol structure) than what GARCH captures.
 
 ### 2.5 Connection to Brunnermeier-Pedersen liquidity spirals (and a H4 reframe)
 

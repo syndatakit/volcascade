@@ -1,0 +1,122 @@
+date,asset,class,label
+2015-01-27,AAPL,idiosyncratic,Q1 FY15 earnings
+2015-04-27,AAPL,idiosyncratic,Q2 FY15 earnings
+2015-07-21,AAPL,idiosyncratic,Q3 FY15 earnings
+2015-10-27,AAPL,idiosyncratic,Q4 FY15 earnings
+2016-01-26,AAPL,idiosyncratic,Q1 FY16 earnings
+2016-04-26,AAPL,idiosyncratic,Q2 FY16 earnings
+2016-07-26,AAPL,idiosyncratic,Q3 FY16 earnings
+2016-10-25,AAPL,idiosyncratic,Q4 FY16 earnings
+2017-02-01,AAPL,idiosyncratic,Q1 FY17 earnings (first after iPhone 7 cycle)
+2017-05-02,AAPL,idiosyncratic,Q2 FY17 earnings
+2017-08-01,AAPL,idiosyncratic,Q3 FY17 earnings
+2017-11-02,AAPL,idiosyncratic,Q4 FY17 earnings (iPhone X)
+2018-02-01,AAPL,idiosyncratic,Q1 FY18 earnings
+2018-05-01,AAPL,idiosyncratic,Q2 FY18 earnings
+2018-07-31,AAPL,idiosyncratic,Q3 FY18 earnings
+2018-11-01,AAPL,idiosyncratic,Q4 FY18 earnings
+2019-01-29,AAPL,idiosyncratic,Q1 FY19 earnings (China weakness)
+2019-04-30,AAPL,idiosyncratic,Q2 FY19 earnings
+2019-07-30,AAPL,idiosyncratic,Q3 FY19 earnings
+2019-10-30,AAPL,idiosyncratic,Q4 FY19 earnings
+2020-01-28,AAPL,idiosyncratic,Q1 FY20 earnings (record)
+2020-04-30,AAPL,idiosyncratic,Q2 FY20 earnings (COVID)
+2020-07-30,AAPL,idiosyncratic,Q3 FY20 earnings
+2020-10-29,AAPL,idiosyncratic,Q4 FY20 earnings
+2021-01-27,AAPL,idiosyncratic,Q1 FY21 earnings
+2021-04-28,AAPL,idiosyncratic,Q2 FY21 earnings
+2021-07-27,AAPL,idiosyncratic,Q3 FY21 earnings
+2021-10-28,AAPL,idiosyncratic,Q4 FY21 earnings
+2022-01-27,AAPL,idiosyncratic,Q1 FY22 earnings
+2022-04-28,AAPL,idiosyncratic,Q2 FY22 earnings
+2022-07-28,AAPL,idiosyncratic,Q3 FY22 earnings
+2022-10-27,AAPL,idiosyncratic,Q4 FY22 earnings
+2023-02-02,AAPL,idiosyncratic,Q1 FY23 earnings
+2023-05-04,AAPL,idiosyncratic,Q2 FY23 earnings
+2023-08-03,AAPL,idiosyncratic,Q3 FY23 earnings
+2023-11-02,AAPL,idiosyncratic,Q4 FY23 earnings
+2024-02-01,AAPL,idiosyncratic,Q1 FY24 earnings
+2024-05-02,AAPL,idiosyncratic,Q2 FY24 earnings
+2024-08-01,AAPL,idiosyncratic,Q3 FY24 earnings
+2024-10-31,AAPL,idiosyncratic,Q4 FY24 earnings
+2015-01-28,FOMC,systemic,FOMC decision
+2015-03-18,FOMC,systemic,FOMC decision
+2015-04-29,FOMC,systemic,FOMC decision
+2015-06-17,FOMC,systemic,FOMC decision
+2015-07-29,FOMC,systemic,FOMC decision
+2015-09-17,FOMC,systemic,FOMC decision
+2015-10-28,FOMC,systemic,FOMC decision
+2015-12-16,FOMC,systemic,FOMC decision
+2016-01-27,FOMC,systemic,FOMC decision
+2016-03-16,FOMC,systemic,FOMC decision
+2016-04-27,FOMC,systemic,FOMC decision
+2016-06-15,FOMC,systemic,FOMC decision
+2016-07-27,FOMC,systemic,FOMC decision
+2016-09-21,FOMC,systemic,FOMC decision
+2016-11-02,FOMC,systemic,FOMC decision
+2016-12-14,FOMC,systemic,FOMC decision
+2017-02-01,FOMC,systemic,FOMC decision
+2017-03-15,FOMC,systemic,FOMC decision
+2017-05-03,FOMC,systemic,FOMC decision
+2017-06-14,FOMC,systemic,FOMC decision
+2017-07-26,FOMC,systemic,FOMC decision
+2017-09-20,FOMC,systemic,FOMC decision
+2017-11-01,FOMC,systemic,FOMC decision
+2017-12-13,FOMC,systemic,FOMC decision
+2018-01-31,FOMC,systemic,FOMC decision
+2018-03-21,FOMC,systemic,FOMC decision
+2018-05-02,FOMC,systemic,FOMC decision
+2018-06-13,FOMC,systemic,FOMC decision
+2018-08-01,FOMC,systemic,FOMC decision
+2018-09-26,FOMC,systemic,FOMC decision
+2018-11-08,FOMC,systemic,FOMC decision
+2018-12-19,FOMC,systemic,FOMC decision
+2019-01-30,FOMC,systemic,FOMC decision
+2019-03-20,FOMC,systemic,FOMC decision
+2019-05-01,FOMC,systemic,FOMC decision
+2019-06-19,FOMC,systemic,FOMC decision
+2019-07-31,FOMC,systemic,FOMC decision
+2019-09-18,FOMC,systemic,FOMC decision
+2019-10-30,FOMC,systemic,FOMC decision
+2019-12-11,FOMC,systemic,FOMC decision
+2020-01-29,FOMC,systemic,FOMC decision
+2020-03-03,FOMC,systemic,FOMC decision
+2020-03-15,FOMC,systemic,FOMC decision
+2020-04-29,FOMC,systemic,FOMC decision
+2020-06-10,FOMC,systemic,FOMC decision
+2020-07-29,FOMC,systemic,FOMC decision
+2020-09-16,FOMC,systemic,FOMC decision
+2020-11-05,FOMC,systemic,FOMC decision
+2020-12-16,FOMC,systemic,FOMC decision
+2021-01-27,FOMC,systemic,FOMC decision
+2021-03-17,FOMC,systemic,FOMC decision
+2021-04-28,FOMC,systemic,FOMC decision
+2021-06-16,FOMC,systemic,FOMC decision
+2021-07-28,FOMC,systemic,FOMC decision
+2021-09-22,FOMC,systemic,FOMC decision
+2021-11-03,FOMC,systemic,FOMC decision
+2021-12-15,FOMC,systemic,FOMC decision
+2022-01-26,FOMC,systemic,FOMC decision
+2022-03-16,FOMC,systemic,FOMC decision
+2022-05-04,FOMC,systemic,FOMC decision
+2022-06-15,FOMC,systemic,FOMC decision
+2022-07-27,FOMC,systemic,FOMC decision
+2022-09-21,FOMC,systemic,FOMC decision
+2022-11-02,FOMC,systemic,FOMC decision
+2022-12-14,FOMC,systemic,FOMC decision
+2023-02-01,FOMC,systemic,FOMC decision
+2023-03-22,FOMC,systemic,FOMC decision
+2023-05-03,FOMC,systemic,FOMC decision
+2023-06-14,FOMC,systemic,FOMC decision
+2023-07-26,FOMC,systemic,FOMC decision
+2023-09-20,FOMC,systemic,FOMC decision
+2023-11-01,FOMC,systemic,FOMC decision
+2023-12-13,FOMC,systemic,FOMC decision
+2024-01-31,FOMC,systemic,FOMC decision
+2024-03-20,FOMC,systemic,FOMC decision
+2024-05-01,FOMC,systemic,FOMC decision
+2024-06-12,FOMC,systemic,FOMC decision
+2024-07-31,FOMC,systemic,FOMC decision
+2024-09-18,FOMC,systemic,FOMC decision
+2024-11-07,FOMC,systemic,FOMC decision
+2024-12-18,FOMC,systemic,FOMC decision
