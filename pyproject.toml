@@ -8,7 +8,14 @@ version = "0.1.0.dev0"
 description = "A term structure of differentiation order for realized volatility — regime detection, decoupling, and cross-market comparison"
 readme = "README.md"
 license = {text = "MIT"}
-authors = [{name = "Nitya Hapani"}]
+authors = [
+    {name = "Nitya Hapani", email = "nitya@hapani.example"},
+    {name = "pong", email = "pong@vira-labs.com"},
+]
+maintainers = [
+    {name = "Nitya Hapani", email = "nitya@hapani.example"},
+    {name = "pong", email = "pong@vira-labs.com"},
+]
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.24",
@@ -35,8 +42,10 @@ data = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Nityahapani/volcascade"
-Repository = "https://github.com/Nityahapani/volcascade"
+Homepage = "https://github.com/syndatakit/volcascade"
+Repository = "https://github.com/syndatakit/volcascade"
+Issues = "https://github.com/syndatakit/volcascade/issues"
+Upstream = "https://github.com/Nityahapani/volcascade"
 
 [tool.setuptools.packages.find]
 where = ["src"]
