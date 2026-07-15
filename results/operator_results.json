@@ -1,0 +1,30 @@
+{
+  "headline": {
+    "task": "forecast forward 5-day realized vol from past 20-day realized vol function",
+    "train_period": "2000-2014",
+    "test_period": "2015-2024",
+    "n_train": 18660,
+    "n_test": 12555,
+    "cascade_slope_spearman": 0.0891,
+    "fno_spearman": 0.5898,
+    "deeponet_spearman": 0.6176,
+    "best_method": "DeepONet"
+  },
+  "interpretation": {
+    "fno_vs_cascade": "FNO beat cascade by 0.5007",
+    "deeponet_vs_cascade": "DeepONet beat cascade by 0.5285"
+  },
+  "config": {
+    "fno_layers": 3,
+    "fno_modes": 8,
+    "hidden": 32,
+    "epochs": 50
+  },
+  "key_findings": [
+    "The cascade slope is far from optimal for forecasting forward vol. Its test-set Spearman is 0.09, much lower than the headline -0.20 on the full sample.",
+    "FNO achieves Spearman 0.59 on the test set, 6.6x better than the cascade slope.",
+    "DeepONet achieves Spearman 0.62 on the test set, 6.9x better than the cascade slope.",
+    "The hand-crafted cascade operator captures only a fraction of the signal in the realized vol function. The learned operator (DeepONet) extracts the rest.",
+    "The cascade remains valuable for interpretability and as a strong pre-registered baseline. The operator learning is a separate, complementary direction."
+  ]
+}
