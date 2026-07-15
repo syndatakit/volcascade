@@ -9,7 +9,7 @@ import pandas as pd
 from arch import arch_model
 from scipy import stats as sps
 
-ROOT = Path("/opt/data/volcascade")
+ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from volcascade import build, slope, zscore
@@ -58,11 +58,11 @@ for asset in TICKERS:
     results.append({"asset": asset, "raw_r": float(r_raw), "res_r": float(r_res),
                     "ratio": float(ratio) if ratio is not None else None,
                     "raw_n": len(raw_records), "res_n": len(res_records)})
-    print(f"  {asset}: raw r={r_raw:+.4f} (n={len(raw_records)})  res r={r_res:+.4f}  ratio={ratio:+.3f}" if ratio is not None else f"  {asset}: ratio=n/a")
+    print(f" {asset}: raw r={r_raw:+.4f} (n={len(raw_records)}) res r={r_res:+.4f} ratio={ratio:+.3f}" if ratio is not None else f" {asset}: ratio=n/a")
 
 med_raw = float(np.median([r["raw_r"] for r in results]))
 med_res = float(np.median([r["res_r"] for r in results]))
-print(f"\n  median raw: {med_raw:+.4f}, median residual: {med_res:+.4f}, ratio: {med_res/med_raw:+.3f}")
+print(f"\n median raw: {med_raw:+.4f}, median residual: {med_res:+.4f}, ratio: {med_res/med_raw:+.3f}")
 
 out = {"results": results, "median_raw": med_raw, "median_residual": med_res,
        "ratio": med_res/med_raw if abs(med_raw) > 0.01 else None}
