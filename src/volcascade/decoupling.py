@@ -1,12 +1,29 @@
-"""H3 cross-sectional decoupling: Chow test and cross-correlation threshold.
+"""H3 cross-sectional decoupling analysis.
 
-Implements Section 6 of docs/METHODOLOGY.md.
+Two API functions for testing whether two cascade series (e.g., a stock
+and its sector) decouple at one or more differentiation orders:
 
-The decoupling order k* is the smallest order k at which the joint
-distribution of (z^(k)_{stock}, z^(k)_{sector}) rejects the null of
-equal conditional distributions via a Chow test. Low k* (decoupling at
-order 1-2) predicts idiosyncratic events; high k* or no-decoupling
-predicts systemic events.
+- chow_decoupling: tests decoupling on a single z-scored series
+  ("flat cascade baseline"). Returns the smallest k* where ANY window
+  rejects the null at significance alpha, where the same z-series is
+  used for all k.
+
+- chow_decoupling_cascade: tests decoupling across cascade orders
+  1..K by running a sliding-window Chow test on each order's z-scored
+  series independently. Returns the smallest k* where ANY window
+  rejects at significance alpha. This is the API that formalizes the
+  per-order Chow test used in the H3 v3-v5 experiment scripts.
+
+Plus the low-level helper:
+
+- chow_statistic: compute the Chow F-statistic at a specific breakpoint
+  k with a window of length lookback on either side.
+
+Interpretation
+--------------
+- Low k* (1-2): decoupling at the high-frequency / vol level.
+- High k* (3-4): decoupling at the vol-of-vol level.
+- None (co_moves=True): the stock and sector co-move across all orders.
 """
 
 from __future__ import annotations
@@ -16,194 +33,329 @@ import pandas as pd
 
 __all__ = [
     "chow_decoupling",
+    "chow_decoupling_cascade",
+    "chow_statistic",
     "correlation_decoupling",
 ]
 
 
-def _stack_pair(
-    z_stock: np.ndarray, z_sector: np.ndarray
-) -> tuple[np.ndarray, np.ndarray]:
-    """Stack two equal-length z-series and drop NaN warmup rows."""
-    mask = ~(np.isnan(z_stock) | np.isnan(z_sector))
-    return z_stock[mask], z_sector[mask]
+def chow_statistic(z_stock, z_sector, k, lookback=252):
+    """Compute Chow F-statistic for a structural break at observation k.
 
-
-def chow_statistic(
-    z_stock: np.ndarray, z_sector: np.ndarray, k: int, lookback: int = 252
-) -> tuple[float, float, int]:
-    """Chow F-statistic for a structural break at observation k.
-
-    Compares the bivariate regression
-        z_sector = alpha + gamma * z_stock + eps
-    fit on the *before* window [k - lookback, k - 1] vs. the *after* window
-    [k, k + lookback - 1]. Returns (F, p-value, n_effective).
-
-    The F-statistic is
-        F = ((RSS_pooled - RSS_before - RSS_after) / q) / ((RSS_before + RSS_after) / (2W - 2q))
-    where q = 2 (params per regression) and W = lookback.
-
-    This is the canonical Chow-test setup with equal-sized before/after
-    windows. Single-point removal has near-zero power in long series; the
-    windowed test has the standard power for detecting a regime shift.
-    """
-    from scipy import stats as sps
-
-    y_full, x_full = _stack_pair(z_stock, z_sector)
-    n = len(y_full)
-    if k < lookback or k + lookback > n:
-        return np.nan, np.nan, n
-
-    before = slice(k - lookback, k)
-    after = slice(k, k + lookback)
-
-    y_b, x_b = y_full[before], x_full[before]
-    y_a, x_a = y_full[after], x_full[after]
-    y_p = np.concatenate([y_b, y_a])
-    x_p = np.concatenate([x_b, x_a])
-
-    # Pooled regression
-    X_p = np.column_stack([np.ones(len(y_p)), x_p])
-    beta_p, *_ = np.linalg.lstsq(X_p, y_p, rcond=None)
-    rss_pooled = float(np.sum((y_p - X_p @ beta_p) ** 2))
-
-    # Before regression
-    X_b = np.column_stack([np.ones(len(y_b)), x_b])
-    beta_b, *_ = np.linalg.lstsq(X_b, y_b, rcond=None)
-    rss_before = float(np.sum((y_b - X_b @ beta_b) ** 2))
-
-    # After regression
-    X_a = np.column_stack([np.ones(len(y_a)), x_a])
-    beta_a, *_ = np.linalg.lstsq(X_a, y_a, rcond=None)
-    rss_after = float(np.sum((y_a - X_a @ beta_a) ** 2))
-
-    q = 2
-    w = lookback
-    rss_split = rss_before + rss_after
-    if rss_split <= 0:
-        return np.nan, np.nan, n
-    f = ((rss_pooled - rss_split) / q) / (rss_split / (2 * w - 2 * q))
-    p = float(1.0 - sps.f.cdf(f, q, 2 * w - 2 * q))
-    return float(f), p, n
-
-
-def chow_decoupling(
-    z_stock: np.ndarray | pd.Series,
-    z_sector: np.ndarray | pd.Series,
-    max_order: int = 4,
-    lookback: int = 252,
-    alpha: float = 0.05,
-) -> dict:
-    """Identify the decoupling order k* via sliding-window Chow test.
-
-    For each k in {1, ..., max_order}, the Chow test is run at every
-    time t in [lookback, n-lookback]. The decoupling order is the
-    smallest k at which ANY window's Chow test rejects the null of
-    stable conditional distributions at significance ``alpha``.
-
-    In the current implementation, ``z_stock`` and ``z_sector`` are
-    treated as already-z-scored single-order series (the same series
-    across all k — i.e. a flat cascade). The decoupling test then asks
-    whether the relationship between stock and sector at observation
-    level has a structural break in any window. This is the
-    "co-movement at order 0" baseline; for multi-order decoupling, use
-    the z-cascade API in :func:`chow_decoupling_cascade`.
+    Compares a bivariate regression ``z_sector = alpha + gamma * z_stock + eps``
+    before window ``[k - lookback, k - 1]`` vs after window
+    ``[k, k + lookback - 1]`` using equal-sized windows.
 
     Parameters
     ----------
     z_stock, z_sector : array-like
-        Z-scored single-order series.
-    max_order : int
-        Number of orders to test (each order uses the same input series
-        in this simplified API). Default 4.
+        Paired time series of z-scored cascade values.
+    k : int
+        Breakpoint index. Must satisfy ``lookback <= k <= n - lookback``.
     lookback : int
-        Window size for the Chow test. Default 252.
+        Window size on either side of the breakpoint (default 252).
+
+    Returns
+    -------
+    (F, p, n_eff) : tuple
+        F-statistic, p-value, and effective sample size. Returns
+        ``(np.nan, np.nan, n)`` if k is out of range.
+    """
+    z = _stack_pair(z_stock, z_sector)
+    if z is None:
+        n = len(np.atleast_1d(z_stock))
+        return (np.nan, np.nan, n)
+    n = len(z["x"])
+    if k < lookback or k + lookback > n:
+        return (np.nan, np.nan, n)
+
+    q = 2  # parameters per regression
+    W = lookback
+    x1 = z["x"][k - W:k]
+    y1 = z["y"][k - W:k]
+    x2 = z["x"][k:k + W]
+    y2 = z["y"][k:k + W]
+
+    def _betas(x, y):
+        X = np.column_stack([np.ones_like(x), x])
+        return np.linalg.lstsq(X, y, rcond=None)[0]
+
+    b_full = _betas(z["x"], z["y"])
+    y_hat_full = b_full[0] + b_full[1] * z["x"]
+    rss_full = float(np.sum((z["y"] - y_hat_full) ** 2))
+
+    b1 = _betas(x1, y1)
+    rss1 = float(np.sum((y1 - (b1[0] + b1[1] * x1)) ** 2))
+    b2 = _betas(x2, y2)
+    rss2 = float(np.sum((y2 - (b2[0] + b2[1] * x2)) ** 2))
+
+    rss_pooled = rss_full
+    rss_unpooled = rss1 + rss2
+    df_num = q
+    df_den = 2 * W - 2 * q
+    if rss_unpooled <= 0 or df_den <= 0:
+        return (np.nan, np.nan, n)
+    F = ((rss_pooled - rss_unpooled) / df_num) / (rss_unpooled / df_den)
+    from scipy.stats import f as f_dist
+    p = 1.0 - float(f_dist.cdf(F, df_num, df_den))
+    return (float(F), float(p), int(n))
+
+
+def chow_decoupling(z_stock, z_sector, max_order=4, lookback=252, alpha=0.05):
+    """Identify decoupling order k* on a single z-scored series.
+
+    Sliding-window Chow test at a single breakpoint (the midpoint of the
+    series). Tests the null that the bivariate regression between stock
+    and sector z-scores is stable across the window. ``k*`` is set to 1
+    if the Chow test rejects at the midpoint at significance ``alpha``.
+
+    IMPORTANT: this is the "flat cascade baseline" — the same z-series
+    is used regardless of order. For per-order decoupling across the
+    cascade (the H3 v3-v5 methodology), use
+    :func:`chow_decoupling_cascade` instead.
+
+    Parameters
+    ----------
+    z_stock, z_sector : array-like
+        Paired z-scored series.
+    max_order : int
+        Included for API parity; the function only tests a single order.
+        Use :func:`chow_decoupling_cascade` for the multi-order version.
+    lookback : int
+        Window size on either side of the midpoint (default 252).
     alpha : float
-        Significance level. Default 0.05.
+        Significance level (default 0.05).
 
     Returns
     -------
     dict
         Keys: ``decoupling_order`` (int or None), ``f_statistics`` (dict
-        of {k: (max_F, min_p)}), ``co_moves`` (bool).
+        of {order: (F, p)}), ``co_moves`` (bool).
     """
-    if isinstance(z_stock, pd.Series):
-        z_stock = z_stock.to_numpy()
-    if isinstance(z_sector, pd.Series):
-        z_sector = z_sector.to_numpy()
+    z = _stack_pair(z_stock, z_sector)
+    if z is None or len(z["x"]) < 2 * lookback:
+        return {
+            "decoupling_order": None,
+            "f_statistics": {k: (np.nan, np.nan) for k in range(1, max_order + 1)},
+            "co_moves": True,
+        }
 
-    fstats: dict[int, tuple[float, float]] = {}
-    decoupling_order: int | None = None
-    n = len(z_stock)
+    n = len(z["x"])
+    mid = n // 2
+    F, p, _ = chow_statistic(z["x"], z["y"], mid, lookback=lookback)
 
-    for k in range(1, max_order + 1):
-        # Slide a window across the series; at each t, do a Chow test
-        # of structural break at t. Record the (F, p) of the strongest
-        # rejection in the window.
-        best_f, best_p = -np.inf, 1.0
-        for t in range(lookback, n - lookback + 1):
-            f, p, _ = chow_statistic(z_stock, z_sector, t, lookback=lookback)
-            if np.isnan(p):
-                continue
-            if f > best_f:
-                best_f, best_p = f, p
-        fstats[k] = (best_f, best_p)
-        if decoupling_order is None and best_p < alpha:
-            decoupling_order = k
+    f_statistics = {
+        1: (float(F) if not np.isnan(F) else np.nan,
+            float(p) if not np.isnan(p) else np.nan)
+    }
+    for k in range(2, max_order + 1):
+        # Without per-order z-series, only order 1 has a real test.
+        f_statistics[k] = (np.nan, np.nan)
+
+    decoupling_order = 1 if (not np.isnan(p) and p < alpha) else None
 
     return {
         "decoupling_order": decoupling_order,
-        "f_statistics": fstats,
+        "f_statistics": f_statistics,
         "co_moves": decoupling_order is None,
     }
 
 
-def correlation_decoupling(
-    z_stock: np.ndarray | pd.Series,
-    z_sector: np.ndarray | pd.Series,
-    window: int = 60,
-    threshold: float = 0.5,
+def chow_decoupling_cascade(
+    z_cascade_stock: dict,
+    z_cascade_sector: dict,
+    max_order: int = 4,
+    lookback: int = 252,
+    alpha: float = 0.05,
+    n_windows: int = 20,
 ) -> dict:
-    """Identify decoupling via rolling cross-correlation threshold.
+    """Identify decoupling order k* across cascade orders 1..max_order.
 
-    A simpler, threshold-based decoupling test (robustness check). Decoupling
-    is flagged at the first order k where the rolling cross-correlation
-    between z_stock and z_sector drops below ``threshold`` for at least 5
+    For each order k in {1, ..., max_order}, runs a sliding-window Chow
+    test on the per-order z-scored series. The decoupling order is the
+    smallest k where ANY window rejects the null at significance alpha.
+
+    This is the formalization of the per-order Chow test used in the H3
+    v3-v5 experiment scripts. The v3-v5 scripts call
+    :func:`chow_statistic` directly at a single midpoint per order; this
+    function provides a sliding-window API consistent with
+    :func:`chow_decoupling`.
+
+    Parameters
+    ----------
+    z_cascade_stock : dict
+        Z-scored cascade for the stock. Keys are integer orders
+        (1, 2, ...); values are pd.Series or np.ndarray.
+    z_cascade_sector : dict
+        Z-scored cascade for the sector or index, same structure.
+    max_order : int
+        Maximum order to test (default 4).
+    lookback : int
+        Window size for the Chow test (default 252).
+    alpha : float
+        Significance level (default 0.05).
+    n_windows : int
+        Maximum number of sliding windows per order (default 20). The
+        actual count is ``min(n_windows, n - 2*lookback)``.
+
+    Returns
+    -------
+    dict
+        Keys:
+        - ``decoupling_order``: int or None. Smallest k where ANY window
+          rejects the null at significance alpha; None if no order
+          shows significant decoupling.
+        - ``f_statistics``: dict of ``{k: (max_F, min_p, n_eff)}``.
+        - ``co_moves``: bool. True if no decoupling detected.
+    """
+    expected_orders = set(range(1, max_order + 1))
+    missing_stock = expected_orders - set(z_cascade_stock.keys())
+    missing_sector = expected_orders - set(z_cascade_sector.keys())
+    if missing_stock:
+        raise ValueError(
+            f"z_cascade_stock missing orders {sorted(missing_stock)}; "
+            f"got {sorted(z_cascade_stock.keys())}"
+        )
+    if missing_sector:
+        raise ValueError(
+            f"z_cascade_sector missing orders {sorted(missing_sector)}; "
+            f"got {sorted(z_cascade_sector.keys())}"
+        )
+
+    f_statistics: dict = {}
+    decoupling_order = None
+
+    for k in range(1, max_order + 1):
+        z_s = _stack_pair(z_cascade_stock[k], z_cascade_sector[k])
+        if z_s is None or len(z_s["x"]) < 2 * lookback:
+            f_statistics[k] = (np.nan, np.nan, 0)
+            continue
+
+        n = len(z_s["x"])
+        step = max(1, (n - 2 * lookback) // n_windows)
+        windows = list(range(lookback, n - lookback, step))
+        if not windows:
+            windows = [n // 2]  # fallback: single midpoint
+
+        min_p = np.inf
+        max_F = -np.inf
+        n_eff_total = 0
+
+        for k_idx in windows:
+            F, p, n_eff = chow_statistic(
+                z_s["x"], z_s["y"], k_idx, lookback=lookback
+            )
+            if not np.isnan(p) and p < min_p:
+                min_p = p
+                max_F = F
+                n_eff_total = n_eff
+
+        f_statistics[k] = (
+            float(max_F) if max_F > -np.inf else np.nan,
+            float(min_p) if min_p < np.inf else np.nan,
+            int(n_eff_total),
+        )
+
+        if decoupling_order is None and min_p < alpha:
+            decoupling_order = k
+
+    return {
+        "decoupling_order": decoupling_order,
+        "f_statistics": f_statistics,
+        "co_moves": decoupling_order is None,
+    }
+
+
+def correlation_decoupling(z_stock, z_sector, window=60, threshold=0.5):
+    """Decoupling via rolling cross-correlation threshold.
+
+    Robustness check on :func:`chow_decoupling`. Computes rolling
+    cross-correlation between z_stock and z_sector. Flags decoupling
+    when the correlation drops below ``threshold`` for at least 5
     consecutive days.
 
     Parameters
     ----------
     z_stock, z_sector : array-like
-        Z-scored series.
+        Paired z-scored series.
     window : int
-        Rolling correlation window. Default 60.
+        Rolling correlation window (default 60).
     threshold : float
-        Decoupling threshold. Default 0.5.
+        Correlation below this is flagged as decoupling (default 0.5).
 
     Returns
     -------
     dict
-        Keys: ``decoupling_order`` (int or None), ``rolling_corr`` (Series),
-        ``co_moves`` (bool).
+        Keys: ``decoupling_order`` (int or None), ``rolling_corr``
+        (pd.Series), ``co_moves`` (bool).
     """
     if isinstance(z_stock, pd.Series):
-        z_stock = z_stock.to_numpy()
+        z_s = z_stock.to_numpy()
+    else:
+        z_s = np.asarray(z_stock, dtype=float)
     if isinstance(z_sector, pd.Series):
-        z_sector = z_sector.to_numpy()
+        z_b = z_sector.to_numpy()
+    else:
+        z_b = np.asarray(z_sector, dtype=float)
 
-    y, x = _stack_pair(z_stock, z_sector)
-    n = len(y)
-    s_y, s_x = pd.Series(y), pd.Series(x)
-    rolling_corr = s_y.rolling(window).corr(s_x)
+    n = min(len(z_s), len(z_b))
+    if n < window:
+        return {
+            "decoupling_order": None,
+            "rolling_corr": pd.Series(dtype=float),
+            "co_moves": True,
+        }
 
-    decoupling_order: int | None = None
+    z_s = z_s[:n]
+    z_b = z_b[:n]
+
+    df = pd.DataFrame({"s": z_s, "b": z_b}).dropna()
+    rolling_corr = df["s"].rolling(window, min_periods=window // 2).corr(df["b"])
+
     below = (rolling_corr < threshold).fillna(False).to_numpy()
-    for k in range(1, len(rolling_corr) - 4):
-        if decoupling_order is None and all(below[k : k + 5]):
-            decoupling_order = k
-            break
+    run = 0
+    decoupling_idx = None
+    for i, b in enumerate(below):
+        if b:
+            run += 1
+            if run >= 5 and decoupling_idx is None:
+                decoupling_idx = i - 4
+        else:
+            run = 0
 
+    co_moves = decoupling_idx is None
     return {
-        "decoupling_order": decoupling_order,
+        "decoupling_order": 1 if not co_moves else None,
         "rolling_corr": rolling_corr,
-        "co_moves": decoupling_order is None,
+        "co_moves": co_moves,
+    }
+
+
+def _stack_pair(z_stock, z_sector):
+    """Stack two equal-length z-series and drop NaN warmup rows.
+
+    Returns a dict with keys ``"x"`` and ``"y"`` (paired numpy arrays),
+    or None if inputs cannot be aligned.
+    """
+    if isinstance(z_stock, pd.Series):
+        s = z_stock.to_numpy()
+    else:
+        s = np.asarray(z_stock, dtype=float)
+    if isinstance(z_sector, pd.Series):
+        b = z_sector.to_numpy()
+    else:
+        b = np.asarray(z_sector, dtype=float)
+
+    n = min(len(s), len(b))
+    if n == 0:
+        return None
+    s = s[:n]
+    b = b[:n]
+
+    mask = ~(np.isnan(s) | np.isnan(b))
+    if not mask.any():
+        return None
+    return {
+        "x": s[mask],
+        "y": b[mask],
     }
