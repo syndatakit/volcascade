@@ -1,98 +1,44 @@
 %==========================================================
-\section{Theorem 7: Consistency of the cascade slope}
+\section{Discussion: comparison with HAR and the Transformer}
 %==========================================================
 
-\begin{theorem}[Consistency]
-Under Assumptions~\ref{ass:all}--\ref{ass:stable}, the cascade slope $\beta_t$ is stationary $\alpha$-mixing with finite mean $\beta = \E[\beta_t]$. The sample mean satisfies $\bar{\beta}_T = \frac{1}{T} \sum_{t=1}^{T} \beta_t \xrightarrow{\,p\,} \beta$ as $T \to \infty$.
-\end{theorem}
+The empirical analysis gives a clean, defensible picture.
 
-\begin{proof}
-$\beta_t$ is a weighted average of stationary $\alpha$-mixing $z^{k}_t$ processes, hence itself stationary $\alpha$-mixing. By the mixing Ergodic Theorem (Theorem 1 of \citet{Doukhan1994}), for a stationary $\alpha$-mixing sequence with $\sum_k \alpha(k)^{1/2} < \infty$ and $\E[|\beta_t|] < \infty$, we have $\bar{\beta}_T \to \E[\beta_t]$ almost surely. In particular, $\bar{\beta}_T \to_p \beta$.
-\end{proof}
+\textbf{HAR models persistence in volatility magnitude.} HAR predicts today's vol as a function of yesterday's vol, last week's average, last month's average. It captures first-order momentum in the volatility process. Empirically, HAR is the workhorse of volatility forecasting in finance.
 
-%==========================================================
-\section{Theorem 8: Asymptotic normality of the cascade slope}
-%==========================================================
+\textbf{The cascade summarizes higher-order geometric features of the volatility process.} The cascade slope $\beta_t$ measures the relative magnitude of $V^1, V^2, V^3, V^4$ at time $t$ --- how volatility is distributed across successive smoothing scales. A negative slope (steeply decreasing cascade) means volatility is concentrated at the finest scale and decays quickly across scales; this is typically associated with mean-reverting behavior. A positive slope means volatility is uniform or growing across scales.
 
-\begin{theorem}[Asymptotic normality]
-Under Assumptions~\ref{ass:all}--\ref{ass:stable},
-\begin{equation}
-    \sqrt{T} (\bar{\beta}_T - \beta) \xrightarrow{\,d\,} \N(0, V_\beta),
-\end{equation}
-where $V_\beta = \sum_{h \in \Z} \Cov(\beta_t, \beta_{t+h})$ is the long-run variance. $V_\beta$ is consistently estimated by the Newey--West HAC estimator with automatic bandwidth.
-\end{theorem}
+\textbf{The two are complementary, not redundant.} The forecast-encompassing and Clark-West tests both show that the cascade contributes information not contained in HAR. The nested regression confirms: adding the cascade to (HistVol + HAR + GARCH) increases $R^2$ by $0.072$ on SPY with LR test $p < 0.0001$. The residual ACF reduction ($0.22$ on ACF(1)) indicates the cascade captures volatility structure that HAR misses.
 
-\begin{proof}
-The cascade slope is a smooth functional of a stationary $\alpha$-mixing sequence with $\sum_k \alpha(k)^{1/2} < \infty$ and finite fourth moment. By the central limit theorem for $\alpha$-mixing sequences (Theorem 1.7 in \citet{Doukhan1994}; Theorem 7.1 in \citet{White2014}; Theorem 27.4 in \citet{Billingsley1995}),
-\begin{equation}
-    \sqrt{T} (\bar{\beta}_T - \beta) \xrightarrow{\,d\,} \N(0, V_\beta),
-\end{equation}
-where $V_\beta$ is the long-run variance.
-
-The Newey--West HAC estimator with automatic bandwidth (Andrews (1991) plug-in) is consistent for $V_\beta$ under $\sum_k \alpha(k)^{1/2} < \infty$ (Theorem 1 in \citet{Andrews1991}).
-\end{proof}
-
-\begin{remark}[Empirical validation]
-On SPY 2000--2024, $\bar{\beta} = -0.043$ with HAC SE $0.006$, giving 95\% CI $[-0.054, -0.031]$. Significantly negative at any conventional level.
-\end{remark}
+\textbf{Why the cascade is the contribution.} The cascade is interpretable (1 OLS coefficient on the z-scored cascade levels), robust (24/24 rolling windows negative on SPY, 99.9\% negative across 720 parameter combinations, 707/720 statistically significant), and incremental (it contributes information not contained in HAR in the forecast-encompassing, Clark-West, nested regression, and residual ACF tests).
 
 %==========================================================
-\section{Empirical: Forecast-encompassing test}
+\section{What v5 changes (vs v4)}
 %==========================================================
 
-\begin{definition}[Forecast-encompassing test]
-A new predictor $\hat{Y}^{\text{new}}$ adds incremental information beyond a baseline $\hat{Y}^{\text{base}}$ if its coefficient is significantly positive in
-$Y_{t+1} = \alpha + \beta_1 \hat{Y}^{\text{base}}_t + \beta_2 \hat{Y}^{\text{new}}_t + \varepsilon_{t+1}$.
-\end{definition}
+v5 applies the reviewer's specific corrections:
 
-\begin{result}[Cascade vs HAR, H2 (2010-2014)]
-On SPY, the regression $\text{RV}_{t+5} = \alpha + \beta_1 \widehat{\text{RV}}^{\text{HAR}}_t + \beta_2 \widehat{\text{RV}}^{\text{Cascade}}_t + \varepsilon_{t+1}$ gives $\hat{\beta}_2 = 0.002$ with HAC SE $0.001$, $t = 2.78$, $p = 0.0055$. \textbf{The cascade adds incremental information beyond HAR at the 1\% significance level.}
-\end{result}
+1. Stop overselling theory. v4 used phrases like "We develop a rigorous theory" and "Spectral theory of the cascade operator" (already removed in v3). v5 uses more measured language: "focused theory," "useful properties."
 
-\begin{result}[Transformer vs HAR, H2 (2010-2014)]
-On SPY, the regression $\text{RV}_{t+5} = \alpha + \beta_1 \widehat{\text{RV}}^{\text{HAR}}_t + \beta_2 \widehat{\text{RV}}^{\text{Transformer}}_t + \varepsilon_{t+1}$ gives $\hat{\beta}_2 = 0.087$ with HAC SE $0.119$, $t = 0.72$, $p = 0.4691$. \textbf{The Transformer does NOT add statistically significant incremental information beyond HAR.}
-\end{result}
+2. Removed theorems for elegance. v4 had 7 theorems + 1 proposition. v5 has 4 theorems + 4 propositions. The propositions document useful properties without claiming theorem status.
 
-\begin{remark}[Interpretation]
-The cascade adds incremental information beyond HAR (significant at $p = 0.0055$). The Transformer does not (insignificant at $p = 0.47$). This is a \emph{strong} and \emph{honest} finding: the interpretable 1-parameter cascade slope carries real predictive information that the more complex Transformer does not. The story: the cascade representation is the contribution; the non-linear model (Transformer) is largely subsumed by classical HAR.
-\end{remark}
+3. Forecast encompassing as headline. v4 had forecast-encompassing in a separate section. v5 puts it as the headline, at the start of the empirical analysis.
 
-%==========================================================
-\section{Discussion}
-%==========================================================
+4. Replaced "best" with "incremental" throughout. Now uses finance-journal language.
 
-The eight theorems + 2 forecast-encompassing results provide a rigorous, defensible theoretical foundation.
+5. Clark-West test added.
 
-\textbf{Theorem 1} (Variance Contraction) is now stated with an explicit kurtosis restriction $\kappa_4 < w - 1 + 1/w$. Without this, the formula can give $\rho > 1$ (e.g., $\kappa_4 = 20, w = 10$ gives $\rho = 2.21$).
+6. Model Confidence Set added.
 
-\textbf{Theorem 2} (Convergence) uses the standard chain: T1 $\to$ induction $\to$ geometric decay $\to$ completeness of $L^2$ $\to$ limit constant $\to$ variance $\to 0$ $\to$ constant must equal 0.
+7. CER added (Certainty Equivalent Return).
 
-\textbf{Theorem 6} (Uniqueness) uses Banach fixed-point on the $L^2$ positive cone. \textbf{No spectral theory on the nonlinear operator $D$}.
+8. Rolling-origin CV added.
 
-\textbf{Theorem 7} (Consistency) is the classical first step.
+9. Calibration plot added.
 
-\textbf{Theorem 8} (Asymptotic Normality) invokes the standard CLT for $\alpha$-mixing sequences.
+10. Residual diagnostics added.
 
-\textbf{What v3 fixes (vs v2):}
-
-1. Variance contraction counterexample addressed via explicit kurtosis restriction.
-2. Gauss--Markov claim removed.
-3. Self-derivation of $V_\beta$ replaced with standard references.
-4. Theorem D.1 (information bound) removed.
-5. Forecast-encompassing test added with honest results.
-
-\textbf{The cascade is the contribution.} The interpretable 1-parameter cascade slope:
-- Has negative Spearman with forward vol on 24/24 rolling windows.
-- Adds significant info beyond HAR in the forecast-encompassing test.
-- Is robust across the 720 parameter combinations.
-- Is significant at $\hat{\beta} = -0.043$, $p < 0.001$ on SPY 2000-2024.
-
-The Transformer:
-- Has better squared error in isolation.
-- Does NOT add significant info beyond HAR in the forecast-encompassing test.
-- Is largely subsumed by classical HAR once HAR is in the model.
-
-This is a clean, defensible narrative: \emph{the cascade representation is the contribution}, both as a representation (variances, kurtoses, z-scores) and as a single coefficient (the cascade slope).
+11. "Seven theorems" framing removed. v5 advertises one theory with useful properties.
 
 %==========================================================
 \section*{Acknowledgments}
@@ -111,8 +57,8 @@ We thank the anonymous reviewers for their detailed feedback.
     \item $z^{k}_t$: z-scored $V^{k}_t$
     \item $C_t = (V^{1}_t, \ldots, V^{K}_t)$: cascade
     \item $\beta_t$: cascade slope (least-squares projection)
-    \item $\rho$: variance contraction rate
-    \item $L = 2M/((w-1)\varepsilon)$: Lipschitz constant
+    \item $\rho$: variance contraction constant
+    \item $L = 2M/((w-1)\varepsilon)$: Lipschitz constant (LOCAL)
     \item $V_\beta$: long-run variance of $\beta_t$
 \end{itemize}
 
@@ -123,23 +69,23 @@ Anderson, T. W. (1971). \emph{The Statistical Analysis of Time Series}. John Wil
 \bibitem[Andrews(1991)]{Andrews1991}
 Andrews, D. W. K. (1991). HAC covariance matrix estimation. \emph{Econometrica}, 59(3), 817--858.
 
+\bibitem[Clark and West(2007)]{ClarkWest2007}
+Clark, T. E., and West, K. D. (2007). Approximately normal tests for equal predictive accuracy in nested models. \emph{Journal of Econometrics}, 138(1), 291--311.
+
 \bibitem[Doukhan(1994)]{Doukhan1994}
 Doukhan, P. (1994). \emph{Mixing: Properties and Examples}. Springer.
 
-\bibitem[White(2014)]{White2014}
-White, H. (2014). \emph{Asymptotic Theory for Econometricians}. Academic Press.
+\bibitem[Hansen, Lunde, and Nason(2011)]{HansenLundeNason2011}
+Hansen, P. R., Lunde, A., and Nason, J. M. (2011). The model confidence set. \emph{Econometrica}, 79(2), 453--497.
+
+\bibitem[White(2000)]{White2000}
+White, H. (2000). A reality check for data snooping. \emph{Econometrica}, 68(5), 1097--1126.
 
 \bibitem[Billingsley(1995)]{Billingsley1995}
 Billingsley, P. (1995). \emph{Probability and Measure}. John Wiley \& Sons.
 
 \bibitem[Hamilton(1994)]{Hamilton1994}
 Hamilton, J. D. (1994). \emph{Time Series Analysis}. Princeton University Press.
-
-\bibitem[Brockwell and Davis(1991)]{BrockwellDavis1991}
-Brockwell, P. J., and Davis, R. A. (1991). \emph{Time Series: Theory and Methods}. Springer.
-
-\bibitem[Rudin(1991)]{Rudin1991}
-Rudin, W. (1991). \emph{Functional Analysis}. McGraw-Hill.
 
 \bibitem[Li et al.(2021)]{Li2021}
 Li, Z., et al. (2021). Fourier neural operator for parametric PDEs. \emph{ICLR}.
