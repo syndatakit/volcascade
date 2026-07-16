@@ -1,0 +1,8 @@
+{
+  "title": "Pre-reg iteration 2: added LSTM and Transformer",
+  "date": "2026-07-16",
+  "selected": "FNO_medium",
+  "h1_test_2025_plus": {"FNO_medium_spearman": 0.3855, "p_value": 8.36e-15, "passed_bonferroni": true},
+  "h2_test_2010_2014_holdout": {"FNO_medium_spearman": 0.0301, "p_value": 0.286, "passed_bonferroni": false},
+  "conclusion": "Adding LSTM/Transformer did not change the selection. FNO_medium still wins val. H2 still fails."
+}
