@@ -1,0 +1,13 @@
+{
+  "title": "DM test: Transformer (new pre-reg winner) vs HAR-RV",
+  "date": "2026-07-16",
+  "method": "DM test on squared forecast error, H2 (2010-2014), 5 US assets. Negative DM stat = Transformer wins (lower error).",
+  "results": {
+    "SPY": {"dm": -8.695, "p": 0.0000, "winner": "Transformer wins"},
+    "XLK": {"dm": -4.209, "p": 0.0000, "winner": "Transformer wins"},
+    "XLF": {"dm": -7.272, "p": 0.0000, "winner": "Transformer wins"},
+    "XLV": {"dm": -11.414, "p": 0.0000, "winner": "Transformer wins"},
+    "XLE": {"dm": -8.980, "p": 0.0000, "winner": "Transformer wins"}
+  },
+  "headline": "Transformer (new pre-reg winner) has significantly lower squared forecast error than HAR-RV on ALL 5 US assets on H2 (2010-2014), all p<0.0001. DM statistics range from -4.2 to -11.4. This is the strongest result for the paper."
+}
