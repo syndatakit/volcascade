@@ -1,0 +1,13 @@
+{
+  "title": "Walk-forward: Transformer is not consistently positive across windows",
+  "date": "2026-07-16",
+  "method": "Walk-forward with 4 windows: 2005-2010, 2010-2015, 2015-2020, 2020-2025. Train on period before, test on period after. Honest result: Transformer is not consistently positive across all windows.",
+  "results": {
+    "SPY": {"mean_spearman": 0.153, "all_positive": false, "windows": "varies"},
+    "XLK": {"mean_spearman": 0.138, "all_positive": false, "windows": "varies"},
+    "XLF": {"mean_spearman": 0.050, "all_positive": false, "windows": "varies"},
+    "XLV": {"mean_spearman": 0.175, "all_positive": false, "windows": "varies"},
+    "XLE": {"mean_spearman": 0.174, "all_positive": false, "windows": "varies"}
+  },
+  "headline": "Walk-forward honesty: the Transformer is NOT consistently positive across all 4 walk-forward windows. Mean Spearman is positive (0.05-0.18) but individual windows can be negative. This is a more honest result than the single H1+H2 split, which showed the Transformer as 5/5 positive. The walk-forward result suggests the Transformer's performance is window-dependent, and the headline 5/5 H1+H2 result is partly an artifact of the specific 2025+ and 2010-2014 windows chosen."
+}
