@@ -1,0 +1,14 @@
+{
+  "title": "Real OOS strategy (use Transformer predicted vol, not actual)",
+  "date": "2026-07-16",
+  "method": "Position = target_vol / annualized / predicted_vol. Predicted vol is the Transformer's output, NOT the actual forward vol. This is the honest out-of-sample strategy.",
+  "results": {
+    "SPY": {"real_sharpe": 1.099, "max_dd": -0.046, "turnover": 0.008, "bh_sharpe": 1.078, "win": true},
+    "XLK": {"real_sharpe": 1.110, "max_dd": -0.063, "turnover": 0.007, "bh_sharpe": 1.200, "win": false},
+    "XLF": {"real_sharpe": 0.662, "max_dd": -0.034, "turnover": 0.007, "bh_sharpe": 0.731, "win": false},
+    "XLV": {"real_sharpe": 1.063, "max_dd": -0.042, "turnover": 0.009, "bh_sharpe": 0.890, "win": true},
+    "XLE": {"real_sharpe": 0.710, "max_dd": -0.043, "turnover": 0.006, "bh_sharpe": 0.889, "win": false}
+  },
+  "headline": "Real OOS strategy (using Transformer predicted vol): 2/5 wins vs B&H. SPY +2%, XLV +19%. XLK, XLF, XLE lose. Max drawdowns are small (-0.03 to -0.06). Turnover is low (0.006-0.009). This is a MUCH more honest result than the oracle strategy (which got Sharpe 3.21). The Transformer is competitive with B&H but not consistently better on squared error terms in real backtests.",
+  "interpretation": "The oracle strategy (using actual forward vol) gets Sharpe 3.21 on SPY. The real strategy (using predicted vol) gets Sharpe 1.10 on SPY. This is the 'ceiling' vs 'real' gap. The real strategy is honest but the Transformer is not strong enough to consistently beat B&H on squared error terms in 2025+ vol-targeting."
+}
