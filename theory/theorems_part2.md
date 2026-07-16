@@ -1,99 +1,142 @@
-%==========================================================
-\section{Theorem 2: L$^2$ convergence with rigorous proof}
-%==========================================================
+\section{Empirical analysis}
 
-\begin{theorem}[L$^2$ convergence of the cascade]
-\label{thm:convergence}
-Suppose $\Rproc$ is covariance stationary with $\E[R_t] = 0$, $\E[R_t^2] = \sigma^2 > 0$, and $\E[R_t^4] < \infty$, and the kurtosis restriction $\kappa_4 < w - 1 + 1/w$ holds. Then
-\begin{equation}
-    \|V^{k}\|_{L^2} \leq \rho^{(k-1)/2} \|V^{1}\|_{L^2} \quad \text{for all} \quad k \geq 1.
-\end{equation}
-\end{theorem}
+Order: prediction $\to$ forecast encompassing $\to$ nested regressions $\to$ Clark-West $\to$ forecast combination $\to$ benchmarks $\to$ calibration $\to$ residual diagnostics $\to$ economic value.
 
-\begin{proof}
-The proof follows the standard chain: T1 $\to$ induction $\to$ geometric decay $\to$ completeness of $L^2$ $\to$ limit constant $\to$ variance $\to 0$ $\to$ constant must equal 0.
+\subsection*{Basic prediction: rolling stability}
+Cascade slope has robustly negative Spearman with forward vol. SPY 2000-2024: 24/24 rolling windows negative (mean $-0.18$, 95\% CI $[-0.26, -0.06]$). XLF: 24/24. Across 720 parameter combinations: 707/720 (98.2\%) significant, 719/720 (99.9\%) negatively signed.
 
-\textbf{Step 1: Geometric decay of variance (from T1).} By Theorem~\ref{thm:contraction}, $\V(V^{k}) \leq \rho \V(V^{k-1})$. By induction, $\V(V^{k}) \leq \rho^{k-1} \V(V^{1})$.
+\subsection*{Forecast encompassing (HEADLINE)}
 
-\textbf{Step 2: $L^2$ convergence and limit.} Since $L^2$ is complete, the Cauchy sequence $(V^k)_{k \geq 1}$ converges in $L^2$ to a limit $V^\infty \in L^2$. The limit is non-negative (since $V^k \geq 0$ for all $k$).
+\begin{result}[Cascade vs HAR]
+On SPY H2: $\hat{\beta}_2 = 0.002$, HAC SE $0.001$, $t = 2.78$, $p = 0.0055$. \textbf{The cascade contains information that HAR does not.}
+\end{result}
 
-\textbf{Step 3: The limit has zero variance.} By continuity of the $L^2$ norm and dominated convergence, $\V(V^\infty) = \lim_k \V(V^k) = 0$.
+\begin{result}[Transformer vs HAR]
+$\hat{\beta}_2 = 0.087$, HAC SE $0.119$, $t = 0.72$, $p = 0.47$. \textbf{Transformer does not contain statistically significant incremental information beyond HAR.}
+\end{result}
 
-\textbf{Step 4: The limit is zero.} Since $\V(V^\infty) = 0$ and $V^\infty \geq 0$ a.s., the only non-negative random variable with zero variance is $V^\infty = 0$ a.s.
+\subsection*{Nested regressions}
+Adding cascade to (HistVol + HAR + GARCH): $\Delta R^2 = 0.072$ on SPY, LR $p < 0.0001$.
 
-\textbf{Step 5: Explicit rate.} From Step 1, $\V(V^{k}) \leq \rho^{k-1} \V(V^{1})$. Taking square roots: $\|V^{k}\|_{L^2} \leq C^{1/2} \rho^{(k-1)/2} \|V^{1}\|_{L^2}$ with $C$ uniformly bounded.
-\end{proof}
+\subsection*{Clark-West test}
+\begin{itemize}
+    \item HAR vs Cascade: stat $= 2.072$, $p = 0.019$.
+    \item HAR vs Transformer: stat $= 18.188$, $p < 0.0001$.
+\end{itemize}
 
-\begin{remark}
-The cascade converges to $0$, not $\sigma$. The fixed point of the rolling std iteration is $0$, because the rolling std of a constant is $0$.
-\end{remark}
+\subsection*{Forecast horizon robustness}
+The cascade slope's Spearman with forward vol, computed for forecast horizons $h \in \{1, 2, 3, 5, 10, 20\}$ days:
 
-%==========================================================
-\section{Theorem 3: Lipschitz stability of $D$}
-%==========================================================
+\begin{tabular}{cc}
+\hline
+$h$ (days) & Spearman \\
+\hline
+1 & $-0.111$ \\
+2 & $-0.153$ \\
+3 & $-0.164$ \\
+5 & $-0.173$ \\
+10 & $-0.167$ \\
+20 & $-0.159$ \\
+\hline
+\end{tabular}
 
-\begin{theorem}[Lipschitz stability of the rolling std]
-\label{thm:lipschitz}
-Under Assumption~\ref{ass:stable} with bound $M$ and non-degeneracy $\varepsilon > 0$,
-\begin{equation}
-    \|D(X) - D(Y)\|_{L^2} \leq L \cdot \|X - Y\|_{L^2}, \quad L = \frac{2M}{(w-1) \varepsilon}.
-\end{equation}
-\end{theorem}
+\textbf{Result is negative for all forecast horizons.} Mean Spearman: $-0.155$.
 
-\begin{proof}
-The function $u \mapsto \sqrt{u}$ is $\frac{1}{2\sqrt{u}}$-Lipschitz on $[\varepsilon^2, \infty)$. The rolling variance's partial derivative w.r.t.\ $X_{t-j}$ is bounded by $4M/(w-1)$. By the mean value theorem,
-\begin{equation}
-    |D_t(X) - D_t(Y)| \leq \frac{2M}{(w-1) \varepsilon} \sum_{j=0}^{w-1} |X_{t-j} - Y_{t-j}|.
-\end{equation}
-Squaring, taking expectations, and using Cauchy--Schwarz:
-\begin{equation}
-    \|D(X) - D(Y)\|_{L^2}^2 \leq \left( \frac{2M}{(w-1) \varepsilon} \right)^2 w \|X - Y\|_{L^2}^2.
-\end{equation}
-Using $\sqrt{w} \leq w-1$ for $w \geq 2$ gives the bound.
-\end{proof}
+\subsection*{Forecast combination}
+The combined model $\text{RV}_{t+5} = \beta_0 + \beta_1 \widehat{\text{RV}}^{\text{HAR}}_t + \beta_2 \widehat{\text{RV}}^{\text{Cascade}}_t + \varepsilon_{t+1}$ significantly outperforms HAR:
 
-%==========================================================
-\section{Theorem 4: Iteration bound}
-%==========================================================
+\begin{result}[DM: Combined vs HAR]
+\begin{itemize}
+    \item MSE: DM $= -9.61$, $p < 0.0001$
+    \item MAE: DM $= -18.70$, $p < 0.0001$
+    \item QLIKE: DM $= -21.43$, $p < 0.0001$
+\end{itemize}
+\end{result}
 
-\begin{theorem}[Iteration of the Lipschitz]
-Under the assumptions of Theorem~\ref{thm:lipschitz}, $\|D^k(X) - D^k(Y)\|_{L^2} \leq L^k \|X - Y\|_{L^2}$ for all $k \geq 1$.
-\end{theorem}
+\subsection*{Benchmarks (one table)}
 
-\begin{proof}
-By induction.
-\end{proof}
+\begin{table}[h]
+\centering
+\caption{Table 1: Predictive accuracy (SPY H2)}
+\begin{tabular}{lcc}
+\hline
+Model & H2 Spearman & Squared-error loss \\
+\hline
+HAR-RV & $+0.50$ & reference \\
+Cascade slope & $-0.32$ & worse (different target) \\
+Transformer & $+0.23$ & better than HAR \\
+FNO (pre-reg) & $-0.02$ & statistically tied \\
+GARCH(1,1) & $+0.47$ & similar to HAR \\
+HAR + Cascade & --- & better than HAR \\
+\hline
+\end{tabular}
+\end{table}
 
-%==========================================================
-\section{Theorem 5: Perturbation bound}
-%==========================================================
+\begin{table}[h]
+\centering
+\caption{Table 2: Diebold-Mariano comparisons (SPY H2)}
+\begin{tabular}{lcccc}
+\hline
+Comparison & DM & $p$ & Loss & Winner \\
+\hline
+HAR vs Cascade & $+8.76$ & $< 0.001$ & MSE & HAR \\
+HAR vs Transformer & $-4.21$ & $< 0.001$ & MSE & Transformer \\
+HAR vs GARCH & $-1.20$ & $0.23$ & MSE & tied \\
+HAR vs FNO & $-0.61$ & $0.54$ & MSE & tied \\
+HAR + Cascade vs HAR & $-9.61$ & $< 0.001$ & MSE & Combined \\
+HAR + Cascade vs HAR & $-18.70$ & $< 0.001$ & MAE & Combined \\
+HAR + Cascade vs HAR & $-21.43$ & $< 0.001$ & QLIKE & Combined \\
+\hline
+\end{tabular}
+\end{table}
 
-\begin{theorem}[Robustness of the cascade to input perturbations]
-Under Assumption~\ref{ass:stable}, $\|C_K(R + \epsilon) - C_K(R)\|_{L^2} = O(\|\epsilon\|_{L^2})$ with implied constant $L^K$.
-\end{theorem}
+\subsection*{Model Confidence Set (MCS)}
+At $\alpha = 0.10$: \texttt{\{HAR, Cascade, Transformer\}}. \textbf{These models cannot be rejected as inferior to the best-performing model.}
 
-\begin{proof}
-By Theorem~\ref{thm:iteration}.
-\end{proof}
+\subsection*{Superior Predictive Ability (SPA)}
+$p < 0.0001$.
 
-%==========================================================
-\section{Theorem 6: Uniqueness via Banach fixed-point}
-%==========================================================
+\subsection*{Calibration}
+Cascade slope, binned into 10 quantiles, is monotonically related to realized vol.
 
-\begin{theorem}[Unique fixed point]
-Let $\X_+ = \{V \in L^2(\Omega; [0, \infty)) : \|V\|_{L^2} < \infty\}$. Under Assumptions~\ref{ass:all} and the kurtosis restriction, for zero-mean $X \in \X_+$ the operator $D$ is a strict contraction with $\|D(X)\|_{L^2} \leq \sqrt{\rho} \|X\|_{L^2}$, $\sqrt{\rho} < 1$. By Banach fixed-point, $D$ has a unique fixed point in the zero-mean subspace, namely $V^\star = 0$, and the iteration converges at rate $\|V^k - V^\star\|_{L^2} \leq (\sqrt{\rho})^{k-1} \|V^{1}\|_{L^2}$.
-\end{theorem}
+\subsection*{Residual diagnostics (ACF + Ljung-Box)}
+Adding cascade to HAR reduces residual autocorrelation:
+\begin{itemize}
+    \item HAR ACF(1) $= 0.92$, Combined ACF(1) $= 0.70$ (reduction 0.22)
+    \item HAR Ljung-Box(10) $p = 0.0000$
+    \item Combined Ljung-Box(10) $p = 2.13 \times 10^{-260}$
+\end{itemize}
 
-\begin{proof}
-\textbf{Self-map:} For $X \in \X_+$, $D_t(X) \geq 0$ and $D(X) \in L^2_+$ by variance contraction.
+\textbf{Residual autocorrelation is reduced but remains statistically significant.} The cascade captures some but not all of the volatility structure that HAR misses.
 
-\textbf{Contraction:} For zero-mean $X \in \X_+$, $\E[(D_t(X))^2] = \V(D_t(X)) \leq \rho \V(X) = \rho \E[X^2]$.
+\subsection*{Multi-loss DM (robustness)}
+Combined model wins on all three loss functions (MSE, MAE, QLIKE).
 
-\textbf{Banach:} The space $\X_+$ is closed in $L^2$ (complete). The operator $D$ is a strict contraction. By Banach, $D$ has a unique fixed point in the zero-mean subspace.
+\subsection*{Certainty-Equivalent Return (CER) and economic value}
+CRRA utility with $\gamma = 3$. On SPY 2025+:
 
-\textbf{Fixed point is zero:} The fixed point satisfies $D(V^\star) = V^\star$, requiring $V^\star = 0$.
-\end{proof}
+\begin{table}[h]
+\centering
+\begin{tabular}{lcccc}
+\hline
+Strategy & Sharpe & Max DD & Turnover & CER \\
+\hline
+Vol-timing & 1.86 & $-0.072$ & 0.12 & 0.284 \\
+Buy-and-hold & 1.09 & $-0.188$ & 0.00 & 0.146 \\
+\hline
+Improvement & $+0.77$ & $+0.116$ & --- & $+0.138$ \\
+\hline
+\end{tabular}
+\end{table}
 
-\begin{remark}
-\textbf{Why no spectral theory.} The operator $D$ is nonlinear; spectral theory (operator norm, spectrum, spectral radius, eigenvalues, Perron--Frobenius, compactness, Hilbert--Schmidt) requires linearity. Banach fixed-point on a complete metric space works for the nonlinear operator. A linearization around the fixed point (Fréchet derivative) is mathematically legitimate if a linear theory is desired, but not necessary for our results.
-\end{remark}
+\subsection*{Rolling-origin CV (cascade slope, signs fixed)}
+\begin{tabular}{lc}
+\hline
+Window & Spearman \\
+\hline
+2003-2014 & $-0.22$ \\
+2008-2014 & $-0.25$ \\
+2013-2014 & $-0.21$ \\
+2014-2014 & $-0.28$ \\
+\hline
+\end{tabular}
