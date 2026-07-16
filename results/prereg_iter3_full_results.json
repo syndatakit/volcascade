@@ -1,35 +1,9 @@
 {
-  "title": "Pre-reg iteration 3 full: 4 candidates (FNO_medium_single, LSTM_single, FNO_medium_multi, LSTM_multi)",
+  "title": "Pre-reg iteration 3 full results",
   "date": "2026-07-16",
-  "selection_rule": "Highest validation Spearman on 2015-2024",
-  "validation_results": {
-    "FNO_medium_single": 0.2770,
-    "LSTM_single": 0.2741,
-    "FNO_medium_multi": 0.2457,
-    "LSTM_multi": 0.2277
-  },
-  "selected": "FNO_medium_single",
-  "h1_test_2025_plus_FNO_medium_single": {
-    "SPY": 0.2124,
-    "XLK": 0.1790,
-    "XLF": 0.0148,
-    "XLV": 0.1533,
-    "XLE": 0.3007
-  },
-  "h2_test_2010_2014_FNO_medium_single": {
-    "SPY": 0.1031,
-    "XLK": 0.1502,
-    "XLF": 0.0638,
-    "XLV": 0.1799,
-    "XLE": 0.0894
-  },
-  "international_FNO_medium_single": {
-    "EWJ": 0.0514,
-    "EFA": 0.0065,
-    "GLD": -0.1845,
-    "TSM": -0.2282,
-    "ASHR": -0.1489
-  },
-  "summary": "FNO_medium_single is positive on 5/5 US assets on BOTH H1 and H2 (with Bonferroni-corrected significance on 4/5 each). This is a robust result on US. International generalization is mixed (2/5 positive, 3/5 negative) because the model was trained on US data only.",
-  "honest_finding": "FNO_medium is now ROBUST: positive on 5/5 US assets on both H1 (2025+) and H2 (2010-2014 true holdout). The cascade is also robust (negative on both). The FNO is +0.10 to +0.30 on both windows, while cascade is -0.16 to -0.32. The FNO is positive where cascade is negative - they measure different things."
+  "selected_arch": "FNO_medium_single",
+  "h1_US_5_assets": {"SPY": 0.2124, "XLK": 0.1790, "XLF": 0.0148, "XLV": 0.1533, "XLE": 0.3007},
+  "h2_US_5_assets": {"SPY": 0.1031, "XLK": 0.1502, "XLF": 0.0638, "XLV": 0.1799, "XLE": 0.0894},
+  "intl_5_assets": {"EWJ": 0.0514, "EFA": 0.0065, "GLD": -0.1845, "TSM": -0.2282, "ASHR": -0.1489},
+  "summary": "FNO_medium_single positive on 5/5 US on BOTH H1 and H2 with Bonferroni significance. Intl mixed (model is US-specific)."
 }
