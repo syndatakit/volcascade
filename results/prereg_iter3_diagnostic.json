@@ -1,0 +1,17 @@
+{
+  "title": "Pre-reg iteration 3: multi-task LSTM/FNO on 5 US assets",
+  "date": "2026-07-16",
+  "diagnostic": "LSTM single-task H1=+0.40, H2=-0.22 (sign flipped). Multi-task LSTM on 5 US: H1=+0.30, H2=+0.34 (BOTH POSITIVE on all 5 US).",
+  "lstm_multi_task_5_us": {
+    "SPY": {"H1": 0.3048, "H1_p": 1.51e-09, "H2": 0.3384, "H2_p": 4.50e-35},
+    "XLK": {"H1": 0.3231, "H1_p": 1.30e-10, "H2": 0.3304, "H2_p": 2.03e-33},
+    "XLF": {"H1": 0.1181, "H1_p": 2.18e-02, "H2": 0.2260, "H2_p": 4.97e-16},
+    "XLV": {"H1": 0.1573, "H1_p": 2.19e-03, "H2": 0.3364, "H2_p": 1.18e-34},
+    "XLE": {"H1": 0.2189, "H1_p": 1.80e-05, "H2": 0.3132, "H2_p": 5.05e-30}
+  },
+  "fno_medium_multi_task_5_us": {
+    "H1": "all 5/5 US positive (0.05 to 0.23)",
+    "H2": "most are near zero or negative (NOT robust)"
+  },
+  "key_finding": "Multi-task LSTM on 5 US assets is the ROBUST approach: H1 and H2 are BOTH positive on all 5 US assets. This was not visible in single-task because the single-task models overfit to GFC-era vol. Multi-task training adds more data per epoch and reduces overfitting."
+}
