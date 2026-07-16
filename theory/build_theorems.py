@@ -10,7 +10,6 @@ with open(out_path, 'w') as out:
             print(f"ERROR: {fname} not found"); exit(1)
         with open(path) as f:
             out.write(f.read())
-        # Add a comment between parts (LaTeX treats % as comment)
         if fname != "theorems_part3.md":
             out.write("\n% === END OF PART ===\n\n")
 print(f"Built {out_path} ({os.path.getsize(out_path)} bytes)")
