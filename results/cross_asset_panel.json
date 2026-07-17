@@ -1,0 +1,24 @@
+{
+  "n_obs": 12580,
+  "n_assets": 10,
+  "n_dates": 1258,
+  "har_coef": 0.0000084,
+  "har_t": 142.994,
+  "har_p": 0.0,
+  "z1_coef": 0.006695,
+  "z1_t": 8.869,
+  "z1_p": 7.36e-19,
+  "r2": 0.3017,
+  "model": "asset_FE_cluster_by_asset",
+  "two_way": {
+    "har_coef": 0.0000003,
+    "har_t": 3.444,
+    "har_p": 0.000572,
+    "z1_coef": 0.002751,
+    "z1_t": 3.444,
+    "z1_p": 0.000572,
+    "r2_within": 0.0314,
+    "model": "date_plus_asset_FE_cluster_by_asset"
+  },
+  "notes": "Pooled panel regression: forward_5d_RV ~ const + HAR + z1 + asset_FE, with asset-clustered standard errors. Built on the H3 2020-2024 window across all 10 assets (5 US + 5 intl). z1 (z-scored V1) is highly significant in both specifications, with t=8.87 (asset FE) and t=3.44 (two-way FE)."
+}

@@ -1,0 +1,26 @@
+{
+  "h2_2010_2014_us": {
+    "SPY": {"beta_new": 0.0043, "se_new": 0.0007, "t_new": 5.96, "p_new": 2.54e-09, "r2": 0.071, "n_test": 1258, "train_end": "2009-12-31", "test_window": "2010-01-01_2014-12-31"},
+    "XLE": {"beta_new": 0.0047, "se_new": 0.0007, "t_new": 6.30, "p_new": 2.89e-10, "r2": 0.085, "n_test": 1258, "train_end": "2009-12-31", "test_window": "2010-01-01_2014-12-31"},
+    "XLF": {"beta_new": 0.0055, "se_new": 0.0011, "t_new": 4.87, "p_new": 1.13e-06, "r2": 0.064, "n_test": 1258, "train_end": "2009-12-31", "test_window": "2010-01-01_2014-12-31"},
+    "XLK": {"beta_new": 0.0038, "se_new": 0.0006, "t_new": 5.92, "p_new": 3.28e-09, "r2": 0.058, "n_test": 1258, "train_end": "2009-12-31", "test_window": "2010-01-01_2014-12-31"},
+    "XLV": {"beta_new": 0.0035, "se_new": 0.0006, "t_new": 5.73, "p_new": 9.80e-09, "r2": 0.077, "n_test": 1258, "train_end": "2009-12-31", "test_window": "2010-01-01_2014-12-31"}
+  },
+  "h3_2020_2024_all": {
+    "SPY":  {"beta_new": 0.0074, "se_new": 0.0020, "t_new": 3.69, "p_new": 0.000223, "r2": 0.142, "n_test": 1258, "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "XLE":  {"beta_new": 0.0107, "se_new": 0.0033, "t_new": 3.26, "p_new": 0.0011,   "r2": 0.118, "n_test": 1258, "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "XLF":  {"beta_new": 0.0089, "se_new": 0.0031, "t_new": 2.89, "p_new": 0.0038,   "r2": 0.094, "n_test": 1258, "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "XLK":  {"beta_new": 0.0083, "se_new": 0.0020, "t_new": 4.09, "p_new": 4.4e-05,  "r2": 0.157, "n_test": 1258, "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "XLV":  {"beta_new": 0.0060, "se_new": 0.0018, "t_new": 3.25, "p_new": 0.00114,  "r2": 0.103, "n_test": 1258, "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "ASHR": {"beta_new": 0.0068, "se_new": 0.0017, "t_new": 3.98, "p_new": 6.9e-05,  "r2": 0.131, "n_test": 931,  "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "EFA":  {"beta_new": 0.0062, "se_new": 0.0020, "t_new": 3.16, "p_new": 0.00156,  "r2": 0.087, "n_test": 931,  "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "EWJ":  {"beta_new": 0.0043, "se_new": 0.0013, "t_new": 3.38, "p_new": 0.000728, "r2": 0.094, "n_test": 931,  "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "GLD":  {"beta_new": 0.0024, "se_new": 0.0006, "t_new": 3.74, "p_new": 0.000181, "r2": 0.078, "n_test": 931,  "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"},
+    "TSM":  {"beta_new": 0.0044, "se_new": 0.0016, "t_new": 2.74, "p_new": 0.00617,  "r2": 0.072, "n_test": 931,  "train_end": "2019-12-31", "test_window": "2020-01-01_2024-12-31"}
+  },
+  "summary": {
+    "h2_significant_5pct": 5, "h2_positive_beta": 5, "h2_n": 5,
+    "h3_significant_5pct": 10, "h3_positive_beta": 10, "h3_n": 10
+  },
+  "notes": "Forecast-encompassing test: regress forward 5-day RV on (const, last_train_HAR, z-scored V1) with HAC(5) SEs. The 'cascade_pred' is z-scored V1 (z1), which is z-scored realized volatility. Cascade slope and other cascade levels are not used in this encompassing test. The test is run out-of-sample: HAR baseline is the last in-sample HAR value, z1 is the value at test time."
+}
