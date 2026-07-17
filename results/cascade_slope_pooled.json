@@ -1,0 +1,24 @@
+{
+  "n_obs": 12580,
+  "n_assets": 10,
+  "n_dates": 1258,
+  "har_coef": 16.73336,
+  "har_t": 10.013,
+  "har_p": 1.34e-23,
+  "cs_coef": -0.001640,
+  "cs_t": -2.579,
+  "cs_p": 0.00992,
+  "r2": 0.3957,
+  "model": "asset_FE_cluster_by_asset",
+  "two_way": {
+    "har_coef": 10.00856,
+    "har_t": 7.311,
+    "har_p": 2.66e-13,
+    "cs_coef": 0.000683,
+    "cs_t": 1.390,
+    "cs_p": 0.165,
+    "r2_within": 0.1066,
+    "model": "date_plus_asset_FE_cluster_by_asset"
+  },
+  "notes": "Pooled panel: forward_5d_RV ~ const + HAR + cs + asset_FE, with asset-clustered standard errors. Built on H3 2020-2024 across all 10 assets. cs is significant negative under asset FE (cross-sectional dispersion signal), but flips sign and becomes insignificant under two-way FE. Interpretation: the cascade slope is a cross-sectional phenomenon - when one asset has a high slope relative to others at a given date, its forward vol is lower. The within-asset time-series component is not robust to absorbing date fixed effects."
+}
