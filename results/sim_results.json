@@ -1,0 +1,26 @@
+{
+  "sweep_w_at_L252": {
+    "5": {"var": 0.19673, "mean": -0.0116, "n_valid": 500},
+    "10": {"var": 0.19548, "mean": -0.0011, "n_valid": 500},
+    "20": {"var": 0.24594, "mean": 0.0401, "n_valid": 500},
+    "40": {"var": 0.23991, "mean": -0.014, "n_valid": 500},
+    "80": {"var": 0.313997, "mean": 0.0134, "n_valid": 500},
+    "160": {"var": 0.400595, "mean": -0.0209, "n_valid": 500}
+  },
+  "sweep_L_at_w21": {
+    "60": {"var": 0.345188, "mean": 0.0799, "n_valid": 500},
+    "120": {"var": 0.292772, "mean": 0.0573, "n_valid": 500},
+    "252": {"var": 0.253189, "mean": 0.0491, "n_valid": 500},
+    "504": {"var": 0.23262, "mean": 0.0405, "n_valid": 500},
+    "1008": {"var": 0.212771, "mean": 0.0283, "n_valid": 500}
+  },
+  "log_log_slope_var_vs_w": 0.204,
+  "log_log_slope_var_vs_L": -0.169,
+  "n_sim": 500,
+  "T_total": 5000,
+  "T_eval": 4500,
+  "rho": 0.3,
+  "sigma_eps": 0.01,
+  "method": "AR(1) with rho=0.3, sigma=0.01, 500 Monte Carlo replications, evaluate at t=4500 of a 5000-step series. NaN-safe rolling std (skips NaN within window) and z-score (uses past L values [t-L, t-1]).",
+  "headline": "Paper's claim Var(beta_hat) ~ w^-1 is NOT supported by simulation. log-log slope in w = +0.204 (variance slightly grows in w). log-log slope in L = -0.169 (variance shrinks in L but much slower than L^-1). The four compositions + z-score + OLS-of-4-points structure mean the rate is dominated by something other than the simple w^-1 or L^-1 of a textbook estimator."
+}
