@@ -1,0 +1,60 @@
+{
+  "0_bps": {
+    "CER_strat": 0.00079,
+    "CER_bh": 0.00059,
+    "CER_improvement": 0.00019,
+    "Sharpe_strat": 1.15444,
+    "Sharpe_bh": 0.92719,
+    "Sharpe_improvement": 0.22725,
+    "annualized_return": 0.21536,
+    "annualized_vol": 0.18655,
+    "total_turnover": 10.76114,
+    "mean_position": 1.07660,
+    "n_test": 368
+  },
+  "5_bps": {
+    "CER_strat": 0.00077,
+    "CER_bh": 0.00059,
+    "CER_improvement": 0.00018,
+    "Sharpe_strat": 1.13447,
+    "Sharpe_bh": 0.92719,
+    "Sharpe_improvement": 0.20728,
+    "annualized_return": 0.21167,
+    "annualized_vol": 0.18658,
+    "total_turnover": 10.76114,
+    "mean_position": 1.07660,
+    "n_test": 368
+  },
+  "10_bps": {
+    "CER_strat": 0.00076,
+    "CER_bh": 0.00059,
+    "CER_improvement": 0.00016,
+    "Sharpe_strat": 1.11450,
+    "Sharpe_bh": 0.92719,
+    "Sharpe_improvement": 0.18731,
+    "annualized_return": 0.20799,
+    "annualized_vol": 0.18662,
+    "total_turnover": 10.76114,
+    "mean_position": 1.07660,
+    "n_test": 368
+  },
+  "20_bps": {
+    "CER_strat": 0.00073,
+    "CER_bh": 0.00059,
+    "CER_improvement": 0.00013,
+    "Sharpe_strat": 1.07459,
+    "Sharpe_bh": 0.92719,
+    "Sharpe_improvement": 0.14739,
+    "annualized_return": 0.20062,
+    "annualized_vol": 0.18669,
+    "total_turnover": 10.76114,
+    "mean_position": 1.07660,
+    "n_test": 368
+  },
+  "sample": "SPY 2025+ (OOS), vol-timing with cascade slope signal",
+  "vol_target": 0.15,
+  "position_clip": [0.2, 2.0],
+  "train_window": "2000-01 to 2024-12-31",
+  "test_window": "2025-01 to 2026-07-01",
+  "comparison_to_h2": "2025+ is more favorable than H2 2010-2014: smaller turnover (10.8 vs 41.2), higher Sharpe improvement (0.227 vs 0.168 at 0 bps). The strategy beats B&H on Sharpe at all cost levels (0, 5, 10, 20 bps) and on CER up to 20 bps on both windows."
+}
