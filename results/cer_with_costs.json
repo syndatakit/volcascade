@@ -1,0 +1,53 @@
+{
+  "0_bps": {
+    "CER_strat": 0.00057,
+    "CER_bh": 0.00052,
+    "CER_improvement": 0.00005,
+    "Sharpe_strat": 1.06682,
+    "Sharpe_bh": 0.89885,
+    "Sharpe_improvement": 0.16797,
+    "annualized_return": 0.15295,
+    "annualized_vol": 0.14337,
+    "total_turnover": 41.15572,
+    "mean_position": 0.96598
+  },
+  "5_bps": {
+    "CER_strat": 0.00055,
+    "CER_bh": 0.00052,
+    "CER_improvement": 0.00003,
+    "Sharpe_strat": 1.03803,
+    "Sharpe_bh": 0.89885,
+    "Sharpe_improvement": 0.13918,
+    "annualized_return": 0.14883,
+    "annualized_vol": 0.14338,
+    "total_turnover": 41.15572,
+    "mean_position": 0.96598
+  },
+  "10_bps": {
+    "CER_strat": 0.00053,
+    "CER_bh": 0.00052,
+    "CER_improvement": 0.00002,
+    "Sharpe_strat": 1.00923,
+    "Sharpe_bh": 0.89885,
+    "Sharpe_improvement": 0.11038,
+    "annualized_return": 0.14471,
+    "annualized_vol": 0.14338,
+    "total_turnover": 41.15572,
+    "mean_position": 0.96598
+  },
+  "20_bps": {
+    "CER_strat": 0.00050,
+    "CER_bh": 0.00052,
+    "CER_improvement": -0.00002,
+    "Sharpe_strat": 0.95162,
+    "Sharpe_bh": 0.89885,
+    "Sharpe_improvement": 0.05277,
+    "annualized_return": 0.13646,
+    "annualized_vol": 0.14340,
+    "total_turnover": 41.15572,
+    "mean_position": 0.96598
+  },
+  "sample": "SPY H2 2010-2014, vol-timing with cascade slope signal",
+  "vol_target": 0.15,
+  "position_clip": [0.2, 2.0]
+}
