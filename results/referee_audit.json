@@ -1,0 +1,64 @@
+{
+  "encompassing_by_horizon": {
+    "z1": {
+      "1": {"beta_new": 0.00105, "t_new": 4.32, "p_new": 2.41e-05, "n_test": 1318},
+      "2": {"beta_new": 0.00136, "t_new": 3.92, "p_new": 9.45e-05, "n_test": 1317},
+      "3": {"beta_new": 0.00163, "t_new": 3.71, "p_new": 0.000209, "n_test": 1316},
+      "5": {"beta_new": 0.00189, "t_new": 3.27, "p_new": 0.00111, "n_test": 1314},
+      "10": {"beta_new": 0.00194, "t_new": 2.46, "p_new": 0.014, "n_test": 1309},
+      "20": {"beta_new": 0.00137, "t_new": 1.27, "p_new": 0.204, "n_test": 1299}
+    },
+    "cs": {
+      "1": {"beta_new": -0.00150, "t_new": -4.40, "p_new": 1.39e-05, "n_test": 1318},
+      "2": {"beta_new": -0.00246, "t_new": -4.34, "p_new": 1.53e-05, "n_test": 1317},
+      "3": {"beta_new": -0.00310, "t_new": -3.97, "p_new": 7.46e-05, "n_test": 1316},
+      "5": {"beta_new": -0.00398, "t_new": -3.36, "p_new": 0.000784, "n_test": 1314},
+      "10": {"beta_new": -0.00513, "t_new": -2.76, "p_new": 0.00569, "n_test": 1309},
+      "20": {"beta_new": -0.00739, "t_new": -2.66, "p_new": 0.00774, "n_test": 1299}
+    }
+  },
+  "rolling_z1_encompassing": {
+    "per_asset": {
+      "SPY": {"windows": 21, "sig": 12, "pos": 19, "sig_frac": 0.571},
+      "XLK": {"windows": 21, "sig": 12, "pos": 18, "sig_frac": 0.571},
+      "XLF": {"windows": 21, "sig": 9, "pos": 18, "sig_frac": 0.429},
+      "XLV": {"windows": 21, "sig": 9, "pos": 19, "sig_frac": 0.429},
+      "XLE": {"windows": 21, "sig": 11, "pos": 19, "sig_frac": 0.524},
+      "EWJ": {"windows": 18, "sig": 7, "pos": 17, "sig_frac": 0.389},
+      "EFA": {"windows": 18, "sig": 11, "pos": 17, "sig_frac": 0.611},
+      "GLD": {"windows": 17, "sig": 4, "pos": 16, "sig_frac": 0.235},
+      "TSM": {"windows": 18, "sig": 4, "pos": 16, "sig_frac": 0.222},
+      "ASHR": {"windows": 8, "sig": 5, "pos": 8, "sig_frac": 0.625}
+    },
+    "overall": {"total_windows": 184, "sig": 84, "pos": 167, "sig_frac": 0.457, "pos_frac": 0.908}
+  },
+  "vif_diagnostics": {
+    "har": 2.66,
+    "var": 2.17,
+    "V1": null,
+    "V2": null,
+    "V3": null,
+    "V4": null,
+    "cs": null
+  },
+  "oos_nested_r2": {
+    "M1_hist": 0.2131,
+    "M2_plus_HAR": 0.2439,
+    "M3_plus_GARCH": 0.2439,
+    "M4_plus_Cascade": 0.2818
+  },
+  "ml_comparison": {
+    "HAR_only": {"LinearReg_mse": 0.000116, "LightGBM_mse": 0.000097, "CatBoost_mse": 0.000095, "ElasticNet_mse": 0.000178},
+    "HAR_plus_cascade": {"LinearReg_mse": 0.000111, "LightGBM_mse": 0.000097, "CatBoost_mse": 0.000095, "ElasticNet_mse": 0.000178},
+    "HAR_plus_all_levels": {"LinearReg_mse": 0.000111, "LightGBM_mse": 0.000102, "CatBoost_mse": 0.000100, "ElasticNet_mse": 0.000159}
+  },
+  "cer_with_costs": {
+    "0_bps": {"CER_strat": 0.00057, "CER_bh": 0.00052, "CER_improvement": 0.00005, "Sharpe_strat": 1.06682, "Sharpe_bh": 0.89885, "Sharpe_improvement": 0.16797, "annualized_return": 0.15295, "annualized_vol": 0.14337, "total_turnover": 41.15572, "mean_position": 0.96598},
+    "5_bps": {"CER_strat": 0.00055, "CER_bh": 0.00052, "CER_improvement": 0.00003, "Sharpe_strat": 1.03803, "Sharpe_bh": 0.89885, "Sharpe_improvement": 0.13918, "annualized_return": 0.14883, "annualized_vol": 0.14338, "total_turnover": 41.15572, "mean_position": 0.96598},
+    "10_bps": {"CER_strat": 0.00053, "CER_bh": 0.00052, "CER_improvement": 0.00002, "Sharpe_strat": 1.00923, "Sharpe_bh": 0.89885, "Sharpe_improvement": 0.11038, "annualized_return": 0.14471, "annualized_vol": 0.14338, "total_turnover": 41.15572, "mean_position": 0.96598},
+    "20_bps": {"CER_strat": 0.00050, "CER_bh": 0.00052, "CER_improvement": -0.00002, "Sharpe_strat": 0.95162, "Sharpe_bh": 0.89885, "Sharpe_improvement": 0.05277, "annualized_return": 0.13646, "annualized_vol": 0.14340, "total_turnover": 41.15572, "mean_position": 0.96598}
+  },
+  "vif_note": "VIF for V1-V4 and cs is infinite (NaN in JSON) because the cascade levels are deterministic functions of each other: V^k = rolling_std(V^(k-1)). HAR (VIF=2.66) and GARCH variance (VIF=2.17) are well below the 10 threshold. For the encompassing regression we use just z1 (one variable), so multicollinearity is not a concern.",
+  "ml_comparison_note": "CatBoost and LightGBM are tied at MSE~0.000095 with HAR-only or HAR+cs features. Adding the cascade as a linear term does not improve the gradient boosting models, which already extract nonlinear patterns from HAR.",
+  "cer_assumptions": "vol-timing strategy from vol_timing_simple.py: vol_target=15% annualized, position=vol_target/pred_vol clipped to [0.2, 2.0], turnover-based transaction costs applied as a fraction of position change. Cascade slope is the signal, predicted forward 5-day vol (annualized) is the target."
+}
